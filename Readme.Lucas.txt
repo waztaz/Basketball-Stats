@@ -5,7 +5,7 @@ Work on branches: backend_Lucas, raj
 -Edited models.py in basketball_stats to add statistics models
 -Met with VJ and decided I would complete the models for the basketball statistics.
 -Created Skeleton models for the database schema. 
--Reading: reviewed Django style.
+-Reading: reviewed Django style, and reviewed pandas for future use.
 
 Files edited:
 - basketball_stats\models.py
