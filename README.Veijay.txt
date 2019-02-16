@@ -3,7 +3,7 @@ Commit 1 (Due 2/15)
 
 This week, I completed the following:
 Reading: reviewing the django style to keep application organized
-Programming: 
+Programming: Primarily on branch 'raj' 
 -Created django application, added app 'roster', created an admin and configured it to edit the application
 -Within roster, I edited urls.py, views.py, and models.py to add pages for players, coaches, and teams
 
