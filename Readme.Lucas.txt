@@ -1,3 +1,10 @@
+Week 2 commit:
+Work on branches: raj
+
+-Edited views in directory basketball_stats to reflect Vj's changes under the Smartstats directory.
+-Changed html structure under basketball_stats for future use if the branch isn't completely integrated with the smartstats branch.
+-Reading: django user authentication and django-bootstrap integration for future use in the upcoming weeks.
+
 Week 1 Commit:
 Work on branches: backend_Lucas, raj 
 
