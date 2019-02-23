@@ -1,3 +1,9 @@
+Week 2 commit:
+Work on branches: Frontend_Raza
+
+Created a Schedule page and incorporated Javascript functionality to input time and team.
+Had to make significant changes in the javascript functions given with the bootstrap to provide the functionality where we could view different teams and their scores.
+
 Week 1: 
 
 Implemented the login/registration page using bootstrap.
