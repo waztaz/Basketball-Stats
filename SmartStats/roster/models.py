@@ -4,6 +4,7 @@ from enum import Enum
 # Create your models here.
 
 class Coach(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     coach_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
@@ -27,6 +28,7 @@ class YearInSchool(Enum):
     SR="Senior"
 
 class Player(models.Model):
+    user = models.OneToOnefield(User, on_delete=models.CASCADE)
     player_id=models.AutoField(primary_key=True)
     team_id=models.ForeignKey(Team, on_delete=models.CASCADE)
     #height in inches
