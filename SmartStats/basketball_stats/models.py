@@ -41,6 +41,19 @@ class YearInSchool(Enum):
 
     SR="Senior"
 
+class Stat(Enum):
+    2_point_make 
+    2_point_miss
+    3_point_make
+    3_point_miss
+    free_throw_make
+    free_throw_miss
+    assist
+    rebound
+    turnover
+    steal
+    block
+
 class Player(models.Model):
 
     player_id=models.AutoField(primary_key=True)
@@ -96,13 +109,15 @@ class BasketballStat(model.Models):
 #TODO: class Stat(model.Models):
 #Stretch goal for other sports
 
+#represents a play
 class Play(model.Models):
 	team_id = models.ForeignKey(Team, on_delete = models.CASCADE)
 	play_num = models.IntegerField()
 	position = models.CharField(max_length = 100) #TODO: might refer to player position
 	action = models.CharField(max_length = 100)
 	sequence = models.IntegerField()
-	
+
+#represents a lineup
 class Lineup(model.Models):
     point_guard = models.ForeignKey(Player, on_delete = models.CASCADE)
     shooting_guard = models.ForeignKey(Player, on_delete = models.CASCADE)
@@ -110,10 +125,31 @@ class Lineup(model.Models):
     power_forward = models.ForeignKey(Player, on_delete = models.CASCADE)
     center = models.ForeignKey(Player, on_delete = models.CASCADE)
 
+#represents a player in a lineup
+class PlayerLineup(models.Model):
+    player_id = models.ForeignKey(Player, on_delete = models.CASCADE)
+    lineup - models.ForeignKey(Lineup, on_delete = models.CASCADE)
+
+#represents a Lineup's stats in a time period
 class LineupScore(model.Models):
     game_id = models.ForeignKey(Game, on_delete = models.CASCADE)
+    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
     time_stamp_entered = models.DateTimeField()
     time_stamp_left = models.DateTimeField()
-    team_score = models.IntegerField()
-    opponent_score = models.IntegerField()
+    team_score_entered = models.IntegerField()
+    opponent_score_entered = models.IntegerField()
+    team_score_left = models.IntegerField()
+    opponent_score_entered = models.IntegerField()
+
+class Stats(models.Model):
+    game_id = models.DateTimeField()
+    timestamp = models.DateTimeField()
+    player_id = models.ForeignKey(Player, on_delete = models.CASCADE)
+    stat=models.CharField(
+            max_length=15,
+            choices=[(tag, tag.name) for tag in Stat]
+            )
+ 
+
+    
 
