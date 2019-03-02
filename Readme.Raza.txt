@@ -1,3 +1,10 @@
+Week 3:
+Work on branches: Frontend_Raza
+
+
+Worked on creating the pages of the team and player. Wrote javascript that creates a tidbit and allows one to enter the player name and team and height without leaving the main-page. Worked on a similar manner to create the team page that showed all the players in a team.
+
+
 Week 2 commit:
 Work on branches: Frontend_Raza
 
