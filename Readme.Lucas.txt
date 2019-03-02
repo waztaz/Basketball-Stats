@@ -1,3 +1,17 @@
+Week 3 commit:
+Work on branches: raj
+
+-Edited views and urls in directories basketball_stats and roster for future integration with frontend. 
+-Began work on views and url for pages to be added (analytics, schedule, homepage); however, not all changes are commited to the branch.
+-Began work on backend analytics with pandas and numpy. Not commited due to analytics work not being scheduled at this point on the gantt chart.
+- Reading: More pandas/numpy review, django/query integration. 
+
+Files edited (and commited):
+-basketball_stats\views.py
+-basketball_stats\urls.py
+-roster\views.py
+-roster\urls.py
+
 Week 2 commit:
 Work on branches: raj
 
