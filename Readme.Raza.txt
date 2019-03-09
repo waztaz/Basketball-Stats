@@ -1,3 +1,8 @@
+Week 4:
+Work on branches: Frontend_Raza
+
+Worked on UI Logic for the login page and integrated it with the Django database. Tested out a few entries on the database and the website. Also integrated the rest of the pages so that all the pages have the same look. 
+
 Week 3:
 Work on branches: Frontend_Raza
 
