@@ -1,17 +1,24 @@
 Veijay Raj
-Commit 3 (Due 3/1)
+Commit 4 (Due 3/8)
 
 This week, I completed the following:
 
-Reading: Read about integrating queries with Django
+Reading: Read about integrating bootstrap with Django
 
-Programming: Worked on branch 'raj'
+Programming: Worked on branch 'raj' - to work on Django backend
 Tasks:
--Added to models to fix the models to reflect new schema
--Start analytics/stats in the model/schema
--Designed queries for the analytics (written in qsuedocode - not in the files yet)
+-Merged branches with master
+-debugged errors with models
+-tested models in python shell to ensure items get added to database correctly
+-fixed errors in roster/models.py
+-served up static html files (from frontend HomeStatic folder)
+-added bootstrap and static structure to Django folder
+
 
 Files edited: All within SmartStats folder (Django home)
 roster/models.py
-roster/templates/roster --> login templates
+roster/templates/roster --> added templates and fixed images within home.html
+roster/urls.py
+roster/views.py
+roster/static/roster folder created
 
