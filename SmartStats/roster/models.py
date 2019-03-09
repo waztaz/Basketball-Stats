@@ -51,7 +51,7 @@ class Scout(models.Model):
     last_name = models.CharField(max_length=50)
 
 ########################## TO BE MOVED TO OWN APP LATER ###################
-class Game(models.Models):
+class Game(models.Model):
     game_id= models.AutoField(primary_key = True)
     team_id = models.ForeignKey(Team, on_delete = models.CASCADE)
     opponent = models.CharField(max_length = 100)        #TODO: other team might not be using SmartStats?
@@ -59,18 +59,18 @@ class Game(models.Models):
     team_score = models.IntegerField(default = 0)
     opponent_score = models.IntegerField(default = 0)
 
-class Analytics(model.Models):
+class Analytics(models.Model):
         player_id = models.ForeignKey(Player, on_delete = models.CASCADE)
         #TODO: link to actual stats and add functions
 
-class BasketballStat(model.Models):
+class BasketballStat(models.Model):
     player_id = models.ForeignKey(Player, on_delete = models.CASCADE)
     game_id = models.ForeignKey(Game, on_delete = models.CASCADE)
     time_stamp = models.DateTimeField()
     stat = models.CharField(max_length = 30)
     shot_location = models.IntegerField()
 
-class Play(model.Models):
+class Play(models.Model):
     team_id = models.ForeignKey(Team, on_delete = models.CASCADE)
     play_num = models.IntegerField()
     position = models.CharField(max_length = 100) #TODO: might refer to player position
@@ -78,14 +78,14 @@ class Play(model.Models):
     sequence = models.IntegerField()
     screen_for = models.CharField(max_length = 100)
 
-class Lineup(model.Models):
-    point_guard = models.ForeignKey(Player, on_delete = models.CASCADE)
-    shooting_guard = models.ForeignKey(Player, on_delete = models.CASCADE)
-    small_forward = models.ForeignKey(Player, on_delete = models.CACADE)
-    power_forward = models.ForeignKey(Player, on_delete = models.CASCADE)
-    center = models.ForeignKey(Player, on_delete = models.CASCADE)
+class Lineup(models.Model):
+    point_guard = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="point_guard")
+    shooting_guard = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="shooting_guard")
+    small_forward = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="small_forward")
+    power_forward = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="power_forward")
+    center = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="center")
 
-class LineupScore(model.Models):
+class LineupScore(models.Model):
     game_id = models.ForeignKey(Game, on_delete = models.CASCADE)
     time_stamp_entered = models.DateTimeField()
     time_stamp_left = models.DateTimeField()
