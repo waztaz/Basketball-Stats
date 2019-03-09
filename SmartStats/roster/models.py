@@ -78,6 +78,7 @@ class Play(models.Model):
     sequence = models.IntegerField()
     screen_for = models.CharField(max_length = 100)
 
+#represents a single Lineup on the court
 class Lineup(models.Model):
     point_guard = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="point_guard")
     shooting_guard = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="shooting_guard")
