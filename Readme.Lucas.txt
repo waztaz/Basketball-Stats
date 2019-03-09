@@ -1,3 +1,11 @@
+Week 4 commit:
+Work on branches: frontend_raghav
+
+-Began to work on UI logic for the real time tracker. Currently only requests players from the django server and creates a table displaying player name and number. The table will be altered to represent players in court. Substitute player can also be requested from the server. Further work is needed to complete the logic for time stamps and statistics entered in game.
+
+Files edited:
+-HomeStaticContent/js/realtimetracker.js
+
 Week 3 commit:
 Work on branches: raj
 
