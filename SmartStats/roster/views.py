@@ -1,9 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+
 # Create your views here.
 def index(request):
     return HttpResponse("Roster homepage!")
+
+#home page - home.html
+def home(request):
+    return render(request, 'roster/home.html')
+
+def register(request):
+    return render(request, 'roster/register.html')
 
 def coach(request):
     return HttpResponse("Rosters for a particular coach")
