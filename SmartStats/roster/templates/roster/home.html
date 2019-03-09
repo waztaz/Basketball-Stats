@@ -4,7 +4,8 @@
   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css"/>
 
     <title>SmartStats|Home Page</title>
   </head>
@@ -64,7 +65,7 @@
   </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="lamelp.png" alt="Second slide">
+	    <img class="d-block w-100" src="{% static 'roster/images/lamelp.png' %}" alt="Second slide">
       <div class="carousel-caption d-none d-md-block">
     <h5>Players</h5>
     <p>View Your Stats and Learn Plays</p>
