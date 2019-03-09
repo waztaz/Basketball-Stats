@@ -1,0 +1,24 @@
+Veijay Raj
+Commit 4 (Due 3/8)
+
+This week, I completed the following:
+
+Reading: Read about integrating bootstrap with Django
+
+Programming: Worked on branch 'raj'
+Tasks:
+-Merged branches with master
+-debugged errors with models
+-tested models in python shell to ensure items get added to database correctly
+-fixed errors in roster/models.py
+-served up static html files (from frontend HomeStatic folder)
+-added bootstrap and static structure to Django folder
+
+
+Files edited: All within SmartStats folder (Django home)
+roster/models.py
+roster/templates/roster --> added templates and fixed images within home.html
+roster/urls.py
+roster/views.py
+roster/static/roster folder created
+
