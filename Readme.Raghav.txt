@@ -2,7 +2,7 @@ Week4: Implemented the Analytics UI logic which generates ansychronus requests t
 advance analytics data for each game played by the team. The table is dynamically generated based on values which 
 are retrieved from the server. The UI logic supports updates in real time for advance analytics during the game.
 File is located on frontend_raghav in HomeStaticContent/js. Please ignore the commit labeled second commit. Commit is called fourth commit  
-
+On gantt chart it said update home ui. But that is mostly completed in first commit. Instead it should say update analytics UI
 
 Week3: Implemented the Analytics wireframe using Bootstrap. Used the built in Bootstrap classes with table styling 
 to implement a hardcoded table with values which will be dynamically served in the Ui logic step for the analytics
