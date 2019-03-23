@@ -1,3 +1,9 @@
+Week 5:
+Work on branches: Frontend_Raza
+
+
+Worked on D3 visualization of the court. Some of the visualization remain incomplete though.
+
 Week 4:
 Work on branches: Frontend_Raza
 
