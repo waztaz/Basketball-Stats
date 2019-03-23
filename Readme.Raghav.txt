@@ -1,3 +1,7 @@
+Week5: Implemented Unit Test Framework for Javascript logic for all UI pages. Javascript unit tests use the mocha library to run unit tests
+Test Cases are basic for now but will be expanded when more functionalty is added to the UI logic. The unit tests are run in order
+File is called unit_tests_framework.js and is located on frontend_raghav branch under js folder
+
 Week4: Implemented the Analytics UI logic which generates ansychronus requests to the django server to pull up 
 advance analytics data for each game played by the team. The table is dynamically generated based on values which 
 are retrieved from the server. The UI logic supports updates in real time for advance analytics during the game.
