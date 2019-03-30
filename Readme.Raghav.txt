@@ -1,3 +1,7 @@
+Week6: Had to deviate from gantt chart this week due to additional HTML framework requirement for the roster page. Implemented Roster html
+page and UI logic using Javascript. Roster page shows players and form to add players to the roster.The files are located in HomeStaticContent/js
+and HomeStaticContent as roster.html and roster.js respectively. Located on frontend_raghav
+
 Week5: Implemented Unit Test Framework for Javascript logic for all UI pages. Javascript unit tests use the mocha library to run unit tests
 Test Cases are basic for now but will be expanded when more functionalty is added to the UI logic. The unit tests are run in order
 File is called unit_tests_framework.js and is located on frontend_raghav branch under js folder
