@@ -1,7 +1,20 @@
+Week 6 commit:
+
+Work on branches raj
+
+- Continued work on real time tracker logic. To this end changes were made to the views file for the real time tracker logic including player substitution, block, steal, free throw statistics, and timeout requests. Not all changes were tested/committed.
+- Real time tracker logi also includes backed development and shot statistics task for this week in the gantt chart. 
+
+Files edited:
+-SmartStats/roster/models.py
+-SmartStats/basketball_stats/views.py
+-SmartStats/basketball_stats/models.py
+
 Week 4 commit:
 Work on branches: frontend_raghav
 
 -Began to work on UI logic for the real time tracker. Currently only requests players from the django server and creates a table displaying player name and number. The table will be altered to represent players in court. Substitute player can also be requested from the server. Further work is needed to complete the logic for time stamps and statistics entered in game.
+- Reading: Django and bootstrap integration.
 
 Files edited:
 -HomeStaticContent/js/realtimetracker.js
