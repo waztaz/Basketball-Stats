@@ -80,13 +80,19 @@ class Play(models.Model):
 
 #represents a single Lineup on the court
 class Lineup(models.Model):
+    lineup_id = models.AutoField(primary_key = True)
     point_guard = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="point_guard")
     shooting_guard = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="shooting_guard")
     small_forward = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="small_forward")
     power_forward = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="power_forward")
     center = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="center")
 
+class LineupPlayer(models.Model):
+    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+    player_id = models.ForeignKey(Player, on_delete = models.CASCADE)
+
 class LineupScore(models.Model):
+    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
     game_id = models.ForeignKey(Game, on_delete = models.CASCADE)
     time_stamp_entered = models.DateTimeField()
     time_stamp_left = models.DateTimeField()
