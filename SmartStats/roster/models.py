@@ -88,16 +88,10 @@ class Lineup(models.Model):
     power_forward = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="power_forward")
     center = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="center")
 
-<<<<<<< HEAD
-class LineupPlayer(models.Model):
-    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
-    player_id = models.ForeignKey(Player, on_delete = models.CASCADE)
-=======
 #Many players in many lineups so need to create this
 class LineupPlayer(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
     player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
->>>>>>> analytics_raj
 
 class LineupScore(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
