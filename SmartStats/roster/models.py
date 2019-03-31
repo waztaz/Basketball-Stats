@@ -78,6 +78,7 @@ class Play(models.Model):
     sequence = models.IntegerField()
     screen_for = models.CharField(max_length = 100)
 
+
 #represents a single Lineup on the court
 class Lineup(models.Model):
     lineup_id = models.AutoField(primary_key = True)
@@ -87,9 +88,16 @@ class Lineup(models.Model):
     power_forward = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="power_forward")
     center = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="center")
 
+<<<<<<< HEAD
 class LineupPlayer(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
     player_id = models.ForeignKey(Player, on_delete = models.CASCADE)
+=======
+#Many players in many lineups so need to create this
+class LineupPlayer(models.Model):
+    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+    player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+>>>>>>> analytics_raj
 
 class LineupScore(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
