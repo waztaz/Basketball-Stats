@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Coach(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default='Coach')
     coach_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
@@ -90,8 +90,8 @@ class Lineup(models.Model):
 
 #Many players in many lineups so need to create this
 class LineupPlayer(models.Model):
-    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
-    player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE, related_name="lineup")
+    player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE, related_name="player")
 
 class LineupScore(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
