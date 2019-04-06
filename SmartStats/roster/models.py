@@ -89,9 +89,9 @@ class Lineup(models.Model):
     center = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="center")
 
 #Many players in many lineups so need to create this
-class LineupPlayer(models.Model):
-    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
-    player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+#class LineupPlayer(models.Model):
+ #   lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+  #  player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
 
 class LineupScore(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)

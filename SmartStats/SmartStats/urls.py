@@ -21,7 +21,7 @@ from users import views as user_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('roster/', include('roster.urls')),
-    path('', 'register', user_views.register, name='register'),
+    path('register/', user_views.register, name='register')
     #path('', include('blog.urls'))
     #path('basketballstats/', include('basketball_stats.urls'), name='basketball_stats'),
     #path('login/', auth_views.LoginView.as_view(template_name='roster/login.html'), name='login'),
