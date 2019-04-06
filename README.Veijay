@@ -1,23 +1,22 @@
 Veijay Raj
-Commit 4 (Due 3/29)
+Commit 4 (Due 4/5)
 
 This week, I completed the following:
 
-Reading: Read about proper querying
+Reading: Figuring out automating creation of fields for testing
 
-Programming: Worked on branch 'analytics_raj' - to work on Django backend
+Programming: Worked on branch 'raj_bootstrap_integration' - to work on Django backend, add bootstrap to the Django, and automate fields
 Tasks:
 -Merged branches with master
 -debugged errors with models
 -tested models in python shell to ensure items get added to database correctly
 -added to roster/models.py
--created structure for automating populating the database
--added queries to queries.py
+-added library to automate creation of models for testing
+-added to html files ot include bootstrap
 
 
 Files edited: All within SmartStats folder (Django home)
 roster/models.py
-root - queries.py (store the queries)
-root - automate_data.py
+roster/template/roster --> all the html files to include bootstrap
 
 

@@ -88,3 +88,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Inspiration
 * etc
 
+## Libraries
+Library for automating data: django-autofixture
+ex. python manage.py loadtestdata roster.Coach:1 
+This generates one Coach from the roster app
