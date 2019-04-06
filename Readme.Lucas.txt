@@ -1,3 +1,21 @@
+Week 7 commit:
+
+Work on branches: page_logic_lucas
+
+-Deviated from gantt chart to complete much needed work on the login and registration functionality of the web application. 
+- Implemented Registration logic and some login logic. 
+- Encountered several bugs/issues during this implementation. A significant amount of the work time during this week was spent attempting to solve these problems. Managed to solve several issues
+	- Unable to run the web application (urls.py and views.py in SmartStats/roster had typos)
+	- Python version did not allow for f string use. Instead used formatted strings implemented in python versions prior to python 3.6 (currently running python 3.5.2)
+- Some issues I was not able to solve by the end of this commit due date
+	- CSRF token missing or incorrect. Next steps: will inspect the registration/login html pages since it appears that the settings.py, views.py, and urls.py files are correct.
+
+Files edited:
+- SmartStats/roster/views.py
+- SmartStats/roster/urls.py
+- SmartStats/roster/templates/roster/base.html
+- SmartStats/SmartStats/settings.py
+
 Week 6 commit:
 
 Work on branches raj
