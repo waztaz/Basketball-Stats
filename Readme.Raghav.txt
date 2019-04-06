@@ -1,3 +1,6 @@
+Week7: Back to gantt chart. Implemented D3 court logic. There are some bugs with implementation but will fix it. Implemented court with 
+cross sections using d3 framework. File is located on frontend_raghav under HomeStaticContent
+
 Week6: Had to deviate from gantt chart this week due to additional HTML framework requirement for the roster page. Implemented Roster html
 page and UI logic using Javascript. Roster page shows players and form to add players to the roster.The files are located in HomeStaticContent/js
 and HomeStaticContent as roster.html and roster.js respectively. Located on frontend_raghav
