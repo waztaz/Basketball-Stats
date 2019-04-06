@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Coach(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default='Coach')
+    #user = models.OneToOneField(User, on_delete=models.CASCADE, default='Coach')
     coach_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
@@ -29,7 +29,6 @@ class YearInSchool(Enum):
     SR="Senior"
 
 class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     player_id=models.AutoField(primary_key=True)
     team_id=models.ForeignKey(Team, on_delete=models.CASCADE)
     #height in inches
@@ -45,10 +44,10 @@ class Player(models.Model):
             choices=[(tag, tag.name) for tag in YearInSchool]
             )
 
-class Scout(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+#class Scout(models.Model):
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #first_name = models.CharField(max_length=50)
+    #last_name = models.CharField(max_length=50)
 
 ########################## TO BE MOVED TO OWN APP LATER ###################
 class Game(models.Model):

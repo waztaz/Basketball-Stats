@@ -4,7 +4,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>My Login Page &mdash; Bootstrap 4 Login Page Snippet</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	{% load staticfiles %}
+
+    	<link rel="stylesheet" href="{% static 'roster/css/bootstrap.css' %}" type = "text/css"/>
 	<link rel="stylesheet" type="text/css" href="css/my-login.css">
 </head>
 <body class="my-login-page">
