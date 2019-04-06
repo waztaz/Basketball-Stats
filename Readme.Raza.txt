@@ -1,3 +1,7 @@
+Week 6:
+
+Mostly spend my time reading the Django Documentation to figure out how to integrate the data with the webpages.
+
 Week 5:
 Work on branches: Frontend_Raza
 
