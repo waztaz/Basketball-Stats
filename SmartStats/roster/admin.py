@@ -6,7 +6,6 @@ from .models import *
 admin.site.register(Coach)
 admin.site.register(Team)
 admin.site.register(Player)
-admin.site.register(Scout)
 admin.site.register(Game)
 admin.site.register(Analytics)
 admin.site.register(BasketballStat)
