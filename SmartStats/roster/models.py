@@ -9,11 +9,17 @@ class Coach(models.Model):
     coach_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.first_name_text
 
 class Team(models.Model):
     team_id=models.AutoField(primary_key=True)
     coach_id=models.ForeignKey(Coach, on_delete=models.CASCADE)
     team_name=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.team_name_text
 
 class PlayerPosition(Enum):
     PG="Point Guard"
@@ -21,6 +27,7 @@ class PlayerPosition(Enum):
     SF="Small Forward"
     PF="Power Forward"
     C="Center"
+
 
 class YearInSchool(Enum):
     FR="Freshman"
@@ -32,6 +39,8 @@ class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     player_id=models.AutoField(primary_key=True)
     team_id=models.ForeignKey(Team, on_delete=models.CASCADE)
+    first_name=models.CharField(max_length=100)
+    last_name=models.CharField(max_length=100)
     #height in inches
     height=models.IntegerField(default=0)
     #weight in lbs
@@ -44,6 +53,10 @@ class Player(models.Model):
             max_length=2,
             choices=[(tag, tag.name) for tag in YearInSchool]
             )
+
+    def __str__(self):
+        return self.first_name_text
+
 
 class Scout(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
