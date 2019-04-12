@@ -34,7 +34,7 @@ def login(request):
 def coach(request):
     return HttpResponse("Rosters for a particular coach")
 
-def team(request):
+def team(request, team_id):
     return HttpResponse("Roster page - list of players and information")
 
 def player(request, team_id, player_id):
