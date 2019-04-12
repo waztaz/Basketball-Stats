@@ -10,6 +10,7 @@ urlpatterns = [
         #ex: /roster/team/5/player/4
         #path('team/<int:team_id>/player/<int:player_id>', views.player, name='player'),
         path('', views.coach, name='coach'),
+        path('realtimetracker', views.realtimetracker, name = 'realtimetracker')
         #path('', views.team, name='team'),
         #path('game_id', 'player_id', views.player, name='player')
         ]

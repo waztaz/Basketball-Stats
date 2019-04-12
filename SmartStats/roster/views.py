@@ -40,3 +40,6 @@ def team(request):
 def player(request, team_id, player_id):
     response="You're looking at player {0} who plays for team {1}."
     return HttpResponse(response.format(player_id, team_id))
+
+def realtimetracker(request):
+	return render(request, 'roster/realtimetracker.html')
