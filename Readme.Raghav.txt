@@ -1,3 +1,7 @@
+Week 8: Added UI framework for plays page which includes a basketball court and play list. Added the create team page as well which allows
+users to create a team and enter information such as team name,team size etc. All this implementation is done using bootstrap and html.
+Files are called creatteam.html,plays.html and are located in branch frontend_raghav under HomeStaticContent
+
 Week7: Back to gantt chart. Implemented D3 court logic. There are some bugs with implementation but will fix it. Implemented court with 
 cross sections using d3 framework. File is located on frontend_raghav under HomeStaticContent called dj
 
