@@ -261,6 +261,8 @@
         .radius(hexagonRadius)
         .x(this._translateX.bind(this))
         .y(this._translateY.bind(this))
+        .bin(this._hexagonBin);
+
       // create layerBase
       var layerBase = this.base.append('g');
            
@@ -384,8 +386,8 @@
     hexagonBin: function (point, bin) {
       var attempts = point.attempts || 1;
       var made = +point.made || 0;
-      //bin.attempts = (bin.attempts || 0) + attempts;
-      //bin.made = (bin.made || 0) + made;
+      bin.attempts = (bin.attempts || 0) + attempts;
+      bin.made = (bin.made || 0) + made;
     },
     // how many points does a bin need to be visualized
     hexagonBinVisibleThreshold: 1,

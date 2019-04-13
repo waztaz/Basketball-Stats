@@ -1,3 +1,7 @@
+Week 7:
+
+Completed the d3 analytics page and incorporated the real data into the analytics page and implemented some more functionality and options.
+
 Week 6:
 
 Mostly spend my time reading the Django Documentation to figure out how to integrate the data with the webpages.
