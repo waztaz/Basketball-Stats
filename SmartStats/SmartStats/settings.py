@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
 
     #'autofixture',
     'roster',
@@ -38,6 +39,11 @@ INSTALLED_APPS = [
     #'roster.apps.RosterConfig',
     #'users.apps.UsersConfig',
 
+=======
+    'autofixture',
+    'roster.apps.RosterConfig',
+    #'users.apps.UsersConfig',
+>>>>>>> 9b9e015e14913955c9040bf3354d76c413c04c84
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -53,12 +53,18 @@ class Player(models.Model):
             choices=[(tag, tag.name) for tag in YearInSchool]
             )
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9b9e015e14913955c9040bf3354d76c413c04c84
 #class Scout(models.Model):
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
     #first_name = models.CharField(max_length=50)
     #last_name = models.CharField(max_length=50)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9b9e015e14913955c9040bf3354d76c413c04c84
     def __str__(self):
         return self.first_name_text
 
@@ -112,10 +118,13 @@ class LineupPlayer(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE, related_name="lineup")
     player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE, related_name="player")
 
+<<<<<<< HEAD
 #class LineupPlayer(models.Model):
  #   lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
   #  player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
 
+=======
+>>>>>>> 9b9e015e14913955c9040bf3354d76c413c04c84
 
 class LineupScore(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
