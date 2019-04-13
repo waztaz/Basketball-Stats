@@ -10,9 +10,16 @@
 </head>
 <body>
 	<div>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}"></div>
+          {{ message }}
+      {% endfor %}
+    {% end if %}
 		{% block content %}
         	<p>Content Goes Here.</p>
         	{% endblock %}
+    }
 	</div>
 	<div>
             {% if user.is_authenticated %}
