@@ -1,3 +1,16 @@
+Week 8 commit:
+Work on branches page_logic_lucas, master
+- Merged page_logic_lucas to master
+- Continued debuging of login page. Still having issues with csrf tokens. 
+- Made templates for the realtimetracker and create team pages for use in page_logic_lucas branch. Not an accurate representation of the actual page, but for use in showing the homepage when the request is made to show it. 
+
+Files edited:
+- SmartStats/roster/views.py
+- SmartStats/roster/urls.py
+- SmartStats/roster/templates/roster/realtimetracker.html
+- SmartStats/roster/templates/roster/createteam.html
+- SmartStats/roster/templates/roster/register.html
+
 Week 7 commit:
 
 Work on branches: page_logic_lucas
