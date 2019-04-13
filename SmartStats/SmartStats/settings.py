@@ -31,13 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
     'autofixture',
     'roster',
-=======
     'roster.apps.RosterConfig',
     #'users.apps.UsersConfig',
->>>>>>> url_models_veijay
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
