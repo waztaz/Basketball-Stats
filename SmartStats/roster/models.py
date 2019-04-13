@@ -53,12 +53,10 @@ class Player(models.Model):
             choices=[(tag, tag.name) for tag in YearInSchool]
             )
 
-<<<<<<< HEAD
 #class Scout(models.Model):
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
     #first_name = models.CharField(max_length=50)
     #last_name = models.CharField(max_length=50)
-=======
     def __str__(self):
         return self.first_name_text
 
@@ -67,7 +65,6 @@ class Scout(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
->>>>>>> url_models_veijay
 
 ########################## TO BE MOVED TO OWN APP LATER ###################
 class Game(models.Model):
@@ -108,15 +105,11 @@ class Lineup(models.Model):
     center = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="center")
 
 #Many players in many lineups so need to create this
-<<<<<<< HEAD
+
 class LineupPlayer(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE, related_name="lineup")
     player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE, related_name="player")
-=======
-#class LineupPlayer(models.Model):
- #   lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
-  #  player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
->>>>>>> url_models_veijay
+
 
 class LineupScore(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
