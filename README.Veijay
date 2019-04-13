@@ -1,22 +1,24 @@
 Veijay Raj
-Commit 4 (Due 4/5)
+Commit 4 (Due 4/12)
 
 This week, I completed the following:
 
-Reading: Figuring out automating creation of fields for testing
+Reading: Creating url patterns
 
-Programming: Worked on branch 'raj_bootstrap_integration' - to work on Django backend, add bootstrap to the Django, and automate fields
+Programming: Worked on branch 'urls_models_veijay' - to work on Django backend, add urls and clean up models before we integrate frontend and backend
 Tasks:
 -Merged branches with master
 -debugged errors with models
 -tested models in python shell to ensure items get added to database correctly
--added to roster/models.py
--added library to automate creation of models for testing
--added to html files ot include bootstrap
+-added to roster/models.py --> add fields and str methods for readability
+-added roster/urls.py --> add placeholders to add views
+-added to roster/views.py
 
 
 Files edited: All within SmartStats folder (Django home)
 roster/models.py
+roster/urls.py
+roster/views.py
 roster/template/roster --> all the html files to include bootstrap
 
 

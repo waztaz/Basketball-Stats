@@ -9,11 +9,17 @@ class Coach(models.Model):
     coach_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.first_name_text
 
 class Team(models.Model):
     team_id=models.AutoField(primary_key=True)
     coach_id=models.ForeignKey(Coach, on_delete=models.CASCADE)
     team_name=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.team_name_text
 
 class PlayerPosition(Enum):
     PG="Point Guard"
@@ -21,6 +27,7 @@ class PlayerPosition(Enum):
     SF="Small Forward"
     PF="Power Forward"
     C="Center"
+
 
 class YearInSchool(Enum):
     FR="Freshman"
@@ -31,6 +38,8 @@ class YearInSchool(Enum):
 class Player(models.Model):
     player_id=models.AutoField(primary_key=True)
     team_id=models.ForeignKey(Team, on_delete=models.CASCADE)
+    first_name=models.CharField(max_length=100)
+    last_name=models.CharField(max_length=100)
     #height in inches
     height=models.IntegerField(default=0)
     #weight in lbs
@@ -44,10 +53,21 @@ class Player(models.Model):
             choices=[(tag, tag.name) for tag in YearInSchool]
             )
 
+<<<<<<< HEAD
 #class Scout(models.Model):
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
     #first_name = models.CharField(max_length=50)
     #last_name = models.CharField(max_length=50)
+=======
+    def __str__(self):
+        return self.first_name_text
+
+
+class Scout(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+>>>>>>> url_models_veijay
 
 ########################## TO BE MOVED TO OWN APP LATER ###################
 class Game(models.Model):
@@ -88,9 +108,15 @@ class Lineup(models.Model):
     center = models.ForeignKey(Player, on_delete = models.CASCADE, related_name="center")
 
 #Many players in many lineups so need to create this
+<<<<<<< HEAD
 class LineupPlayer(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE, related_name="lineup")
     player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE, related_name="player")
+=======
+#class LineupPlayer(models.Model):
+ #   lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+  #  player_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+>>>>>>> url_models_veijay
 
 class LineupScore(models.Model):
     lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
