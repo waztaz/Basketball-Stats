@@ -1,2 +1,3 @@
 SmartStats/db.sqlite3
-SmartStats/roster/__pycache__
+SmartStats/roster/__pycache__/
+SmartStats/home/__pycache__/
