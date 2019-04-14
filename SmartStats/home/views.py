@@ -11,6 +11,9 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+<<<<<<< HEAD
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 #from .forms import UserRegisterForm
