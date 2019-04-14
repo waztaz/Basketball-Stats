@@ -18,11 +18,11 @@ def home(request):
 def register(request):
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username = form.cleaned_data.get('username')
-			messages.success(request, 'Account created for %s' % (username))
-			return redirect('home')
+		#if form.is_valid():
+		form.save()
+		username = form.cleaned_data.get('username')
+		messages.success(request, 'Account created for %s' % (username))
+		return redirect('home')
 	else:
 		form = UserRegisterForm()
 	return render(request, 'roster/register.html', {'form': form})

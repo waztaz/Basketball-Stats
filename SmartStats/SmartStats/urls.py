@@ -20,6 +20,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/', include('django.contrib.auth.urls')),
+    path('home/', include('home.urls')),
     path('roster/', include('roster.urls')),
    # path('register/', user_views.register, name='register'),
     #path('', include('blog.urls')),

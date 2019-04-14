@@ -31,19 +31,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
+
 
     #'autofixture',
     'roster',
+    'home',
 
     #'roster.apps.RosterConfig',
     #'users.apps.UsersConfig',
-
-=======
-    'autofixture',
-    'roster.apps.RosterConfig',
+    #'autofixture',
+    #'roster.apps.RosterConfig',
     #'users.apps.UsersConfig',
->>>>>>> 9b9e015e14913955c9040bf3354d76c413c04c84
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -134,3 +132,5 @@ STATIC_URL = '/static/'
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+LOGIN_REDIRECT_URL = '/home/coachhome'
+LOGOUT_REDIRECT_URL = '/home'
