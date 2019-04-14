@@ -134,3 +134,4 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 LOGIN_REDIRECT_URL = '/home/coachhome'
 LOGOUT_REDIRECT_URL = '/home'
+LOGIN_URL = '/home/login'
