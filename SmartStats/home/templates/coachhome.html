@@ -61,15 +61,10 @@
 
 <div class =  "jumbotron" style="height:100vh">
   <div class="btn-group-vertical">
-  <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player1</button>
-  <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player2</button>
-  <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player3</button>
-   <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player4</button>
-  <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player5</button>
-  <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player6</button>
-   <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player7</button>
-  <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player8</button>
-  <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player9</button>
+    {% for o in players %}
+    <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">{{o}}</button>
+{% endfor %}
+
 </div>
 </div>
 </div>
