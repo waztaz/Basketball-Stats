@@ -17,15 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 #from users import views as user_views
+#from roster.views import roster, players, coaches
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', include('django.contrib.auth.urls')),
-    path('home/', include('home.urls')),
-    path('roster/', include('roster.urls')),
-   # path('register/', user_views.register, name='register'),
-    #path('', include('blog.urls')),
-    #path('basketballstats/', include('basketball_stats.urls'), name='basketball_stats'),
-    #path('login/', auth_views.LoginView.as_view(template_name='roster/login.html'), name='login'),
-    #path('logout/', auth_views.LoginView.as_view(template_name='roster/logout.html'), name='logout'),
+    path('', include('roster.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    #path('accounts/signup/', roster.SignUpView.as_view(), name='signup'),
+    #path('accounts/signup/player/', players.PlayerSignUpView.as_view(), name=player_signup'),
+    #path('accounts/signup/coach/', teachers.TeacherSignUpView.as_view(), name='teacher_signup'),
 ]

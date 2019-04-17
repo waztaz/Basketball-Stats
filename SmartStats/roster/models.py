@@ -1,11 +1,19 @@
 from django.db import models
 from enum import Enum
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth import get_user_model
+from django.utils.html import escape, mark_safe
+
+
+# Helper methods
+def get_default_user():
+    return User.objects.get(username="default_user").pk
+
 
 # Create your models here.
 
 class Coach(models.Model):
-    #user = models.OneToOneField(User, on_delete=models.CASCADE, default='Coach')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     coach_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
@@ -36,10 +44,11 @@ class YearInSchool(Enum):
     SR="Senior"
 
 class Player(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=get_default_user())
     player_id=models.AutoField(primary_key=True)
-    team_id=models.ForeignKey(Team, on_delete=models.CASCADE)
-    first_name=models.CharField(max_length=100)
-    last_name=models.CharField(max_length=100)
+    team_id=models.ForeignKey(Team, on_delete=models.CASCADE, default='no_team')
+    first_name=models.CharField(max_length=100, default= "no name")
+    last_name=models.CharField(max_length=100, default="no name")
     #height in inches
     height=models.IntegerField(default=0)
     #weight in lbs

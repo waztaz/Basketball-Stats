@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
-from .forms import UserRegisterForm
+from .forms import *
 
 # Create your views here.
 def index(request):
@@ -15,6 +15,7 @@ def index(request):
 def home(request):
     return render(request, 'roster/home.html')
 
+'''
 def register(request):
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
@@ -27,6 +28,7 @@ def register(request):
 		form = UserRegisterForm()
 	return render(request, 'roster/register.html', {'form': form})
 	#return render_to_response('roster/register.html', RequestContext(request, {'form': form}))
+'''
 
 def login(request):
 	return render(request, 'roster/login.html')
