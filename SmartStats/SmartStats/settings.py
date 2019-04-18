@@ -35,7 +35,7 @@ INSTALLED_APPS = [
 
     #'autofixture',
     'roster',
-    'home',
+    'crispy_forms',
 
     #'roster.apps.RosterConfig',
     #'users.apps.UsersConfig',
@@ -65,7 +65,9 @@ ROOT_URLCONF = 'SmartStats.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,8 +132,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'roster.User'
+
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-LOGIN_REDIRECT_URL = '/home/coachhome'
-LOGOUT_REDIRECT_URL = '/home'
-LOGIN_URL = '/home/login'
+
+LOGIN_URL = 'login'
+
+LOGOUT_URL = 'logout'
+
+#LOGIN_REDIRECT_URL = 'home'
+
+#LOGOUT_REDIRECT_URL = 'home'
+
+
+STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
