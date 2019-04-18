@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from ..models import User, Coach
+from ..models import User, Coach, Team
 from ..forms import CoachSignUpForm
 
 class CoachSignUpView(CreateView):
@@ -26,5 +26,16 @@ class CoachSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/accounts/login/')
+        return redirect('coaches:team_change_list')
 
+#@method_decorator([login_required, teacher_required], name='dispatch')
+class TeamListView(ListView):
+    model = Team
+    ordering = ('team_name', )
+    context_object_name = 'teams'
+    template_name = 'roster/coaches/team_change_list.html'
+
+    def get_queryset(self):
+        current_coach = Coach.objects.get(user=self.request.user).pk
+        queryset = Team.objects.filter(coach_id = current_coach)
+        return queryset
