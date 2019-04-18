@@ -38,7 +38,7 @@ class Coach(models.Model):
 
 class Team(models.Model):
     team_id=models.AutoField(primary_key=True)
-    coach_id=models.ForeignKey(Coach, on_delete=models.CASCADE)
+    coach_id=models.ForeignKey(Coach, on_delete=models.CASCADE, related_name='teams')
     team_name=models.CharField(max_length=100)
 
     #def __str__(self):
@@ -61,7 +61,7 @@ class YearInSchool(Enum):
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     player_id=models.AutoField(primary_key=True)
-    team_id=models.ForeignKey(Team, on_delete=models.CASCADE)
+    team=models.ForeignKey(Team, on_delete=models.CASCADE, related_name='players')
     first_name=models.CharField(max_length=100, default= "no name")
     last_name=models.CharField(max_length=100, default="no name")
     #height in inches

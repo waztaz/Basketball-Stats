@@ -48,7 +48,7 @@ class CoachSignUpForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.is_teacher = True
+        user.is_coach = True
         user.save()
         coach = Coach.objects.create(user=user)
 

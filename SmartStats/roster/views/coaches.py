@@ -26,16 +26,49 @@ class CoachSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('coaches:team_change_list')
+        return redirect('coaches:team_list')
 
 #@method_decorator([login_required, teacher_required], name='dispatch')
 class TeamListView(ListView):
     model = Team
     ordering = ('team_name', )
-    context_object_name = 'teams'
-    template_name = 'roster/coaches/team_change_list.html'
+    #context_object_name = 'team'
+    template_name = 'roster/coaches/team_list.html'
 
     def get_queryset(self):
-        current_coach = Coach.objects.get(user=self.request.user).pk
-        queryset = Team.objects.filter(coach_id = current_coach)
+        current_coach = Coach.objects.get(user=self.request.user)
+        print(current_coach)
+        queryset = Team.objects.filter(coach_id=current_coach)
+        print(queryset)
         return queryset
+
+class TeamUpdateView(UpdateView):
+    model=Team
+    fields = ('team_name', 'coach_id', )
+    template_name = 'roster/coaches/team_change_form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['players'] = self.get_object().players
+        return super().get_context_data(**kwargs)
+
+    def get_queryset(self):
+        current_coach = Coach.objects.get(user=self.request.user)
+        print(current_coach)
+        queryset = Team.objects.filter(coach_id=current_coach)
+        return queryset
+
+
+    def get_success_url(self):
+        return reverse('coaches:team_change', kwargs={'pk': self.object.pk})
+
+class TeamCreateView(CreateView):
+    model = Team
+    fields = ('name', )
+    template_name = 'classroom/teachers/team_add_form.html'
+
+    def form_valid(self, form):
+        team = form.save(commit=False)
+        team.coach_id = self.request.user
+        team.save()
+        messages.success(self.request, 'Go ahead and add players to your team now!')
+        return redirect('coaches:team_change', team.pk)
