@@ -134,16 +134,16 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'roster.User'
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+#PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+#STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 LOGIN_URL = 'login'
 
 LOGOUT_URL = 'logout'
 
-#LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'
 
-#LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 
 STATIC_URL = '/static/'

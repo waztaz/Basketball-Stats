@@ -41,8 +41,8 @@ class Team(models.Model):
     coach_id=models.ForeignKey(Coach, on_delete=models.CASCADE)
     team_name=models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.team_name.text
+    #def __str__(self):
+        #return self.team_name.text
 
 class PlayerPosition(Enum):
     PG="Point Guard"
