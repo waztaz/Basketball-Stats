@@ -13,16 +13,10 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import UserRegisterFor
 
-
-
-#from .forms import UserRegisterForm
-
-# Create your views here.
 def index(request):
     return render(request, 'home/home.html')
-
-
 
 class coachhome(LoginRequiredMixin,generic.CreateView):
     def get(self,request):
