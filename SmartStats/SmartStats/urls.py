@@ -26,4 +26,5 @@ urlpatterns = [
     path('accounts/signup/', roster.SignUpView.as_view(), name='signup'),
     path('accounts/signup/player/', players.PlayerSignUpView.as_view(), name='player_signup'),
     path('accounts/signup/coach/', coaches.CoachSignUpView.as_view(), name='coach_signup'),
+    path('home/', include('home.urls')),
 ]

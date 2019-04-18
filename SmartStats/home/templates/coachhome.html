@@ -22,7 +22,7 @@
 
 
   <div class="jumbotron text-center" style="margin-bottom:0">
-   <h1>Welcome to your Dashboard Coach {{ user.username }}.</h1>
+   <h1>Welcome to your Dashboard Coach .</h1>
   <p><a href="{% url 'logout' %}">logout</a></p>
 </div>
 
@@ -67,9 +67,9 @@
 <div class = col-sm-10>
 <div class =  "jumbotron" style="height:25vh">
   <button type="button" class="btn btn-primary">Two Points</button>
-<button type="button" class="btn btn-secondary">Three Points</button>
-<button type="button" class="btn btn-success">Foul</button>
-<button type="button" class="btn btn-danger">Freethrow</button>
+<button onclick="add()" type="button" class="btn btn-secondary">Three Points</button>
+<button onclick="add()"type="button" class="btn btn-success">Foul</button>
+<button onclick="add()"type="button" class="btn btn-danger">Freethrow</button>
 <button type="button" class="btn btn-warning">Steal</button>
 <button type="button" class="btn btn-info">Block</button>
 <button type="button" class="btn btn-light">Assist</button>

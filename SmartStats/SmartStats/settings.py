@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     #'autofixture',
     'roster',
     'crispy_forms',
+    'home',
 
     #'roster.apps.RosterConfig',
     #'users.apps.UsersConfig',
