@@ -35,7 +35,6 @@ INSTALLED_APPS = [
 
     #'autofixture',
     'roster',
-    'home',
     'crispy_forms',
 
     #'roster.apps.RosterConfig',
@@ -142,9 +141,9 @@ LOGIN_URL = 'login'
 
 LOGOUT_URL = 'logout'
 
-LOGIN_REDIRECT_URL = 'home'
+#LOGIN_REDIRECT_URL = 'home'
 
-LOGOUT_REDIRECT_URL = 'home'
+#LOGOUT_REDIRECT_URL = 'home'
 
 
 STATIC_URL = '/static/'

@@ -1,3 +1,4 @@
+
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 
@@ -12,3 +13,4 @@ def home(request):
         else:
             return redirect('students:quiz_list')
     return render(request, 'roster/home.html')
+

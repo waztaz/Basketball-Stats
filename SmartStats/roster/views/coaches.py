@@ -1,3 +1,4 @@
+
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -25,5 +26,5 @@ class CoachSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('')
+        return redirect('/accounts/login/')
 
