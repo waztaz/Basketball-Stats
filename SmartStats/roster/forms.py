@@ -18,7 +18,7 @@ class PlayerSignUpForm(UserCreationForm):
         user.save()
         player = Player.objects.create(user=user, name=self.data['name'])
         return user
-'''
+
 class CoachSignUpForm(UserCreationForm):
     name=forms.CharField(label='Your name', max_length=100)
 
@@ -30,4 +30,4 @@ class CoachSignUpForm(UserCreationForm):
         user.is_teacher = True
         user.save()
         teacher = Teacher.objects.create(user=user, name=self.data['name'])
-'''
+

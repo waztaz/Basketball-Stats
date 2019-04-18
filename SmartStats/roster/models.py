@@ -1,19 +1,25 @@
 from django.db import models
 from enum import Enum
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 from django.utils.html import escape, mark_safe
 
-
-# Helper methods
-def get_default_user():
-    return User.objects.get(username="default_user").pk
+DEFAULT_USER = 'default_user'
 
 
 # Create your models here.
 
+#Creating Custom User
+class User(AbstractUser):
+    is_player=models.BooleanField(default=False)
+    is_coach = models.BooleanField(default=False)
+
+def get_default_user():
+    return User.objects.get_or_create(username=DEFAULT_USER)[0].pk
+
+
 class Coach(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=get_default_user())
     coach_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
@@ -44,9 +50,9 @@ class YearInSchool(Enum):
     SR="Senior"
 
 class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=get_default_user())
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     player_id=models.AutoField(primary_key=True)
-    team_id=models.ForeignKey(Team, on_delete=models.CASCADE, default='no_team')
+    team_id=models.ForeignKey(Team, on_delete=models.CASCADE, default=-1)
     first_name=models.CharField(max_length=100, default= "no name")
     last_name=models.CharField(max_length=100, default="no name")
     #height in inches
