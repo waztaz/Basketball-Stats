@@ -16,19 +16,18 @@ class User(AbstractUser):
     is_coach = models.BooleanField(default=False)
 
 
-"""
+
 def get_default_user():
     return User.objects.get_or_create(username=DEFAULT_USER)[0].pk
 
 def get_default_team():
-    return Team.objects.get_or_create(coach_id=get_default_coach(), team_name=DEFAULT_TEAM)[0].pk
+    return Team.objects.get_or_create(team_name=DEFAULT_TEAM)[0]
 
 def get_default_coach():
-    return Coach.objects.get_or_create(user=get_default_user())[0].pk
-"""
+    return Coach.objects.get_or_create(user=get_default_user())[0]
 
 class Coach(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user())
     coach_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50, default="coach")
     last_name=models.CharField(max_length=50, default="coach")
@@ -59,15 +58,16 @@ class YearInSchool(Enum):
     SR="Senior"
 
 class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user())
     player_id=models.AutoField(primary_key=True)
-    team=models.ForeignKey(Team, on_delete=models.CASCADE, related_name='players')
+    team=models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name='players')
     first_name=models.CharField(max_length=100, default= "no name")
     last_name=models.CharField(max_length=100, default="no name")
     #height in inches
     height=models.IntegerField(default=0)
     #weight in lbs
     weight=models.IntegerField(default=0)
+    """
     position=models.CharField(
             max_length=2,
             choices=[(tag, tag.name) for tag in PlayerPosition]
@@ -76,7 +76,7 @@ class Player(models.Model):
             max_length=2,
             choices=[(tag, tag.name) for tag in YearInSchool],
             )
-
+"""
 """
 #class Scout(models.Model):
     #user = models.OneToOneField(User, on_delete=models.CASCADE)

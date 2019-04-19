@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from ..models import User, Coach, Team
+from ..models import User, Coach, Team, Player
 from ..forms import CoachSignUpForm
 
 class CoachSignUpView(CreateView):
@@ -28,6 +28,7 @@ class CoachSignUpView(CreateView):
         login(self.request, user)
         return redirect('coaches:team_list')
 
+
 #@method_decorator([login_required, teacher_required], name='dispatch')
 class TeamListView(ListView):
     model = Team
@@ -42,6 +43,19 @@ class TeamListView(ListView):
         print(queryset)
         return queryset
 
+class PlayerListView(ListView):
+    model = Player
+    ordering = ('first_name', 'last_name', )
+    template_name = 'roster/coaches/team_change_form.html'
+
+    def get_queryset(self):
+        queryset=Player.objects.filter(team=self.kwargs.get('pk'))
+        print(queryset)
+        return queryset
+
+
+
+
 class TeamUpdateView(UpdateView):
     model=Team
     fields = ('team_name', 'coach_id', )
@@ -49,14 +63,15 @@ class TeamUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         kwargs['players'] = self.get_object().players
+        #kwargs['team'] = self.get_object().team_name
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
         current_coach = Coach.objects.get(user=self.request.user)
         print(current_coach)
         queryset = Team.objects.filter(coach_id=current_coach)
+        print(queryset)
         return queryset
-
 
     def get_success_url(self):
         return reverse('coaches:team_change', kwargs={'pk': self.object.pk})
@@ -72,3 +87,4 @@ class TeamCreateView(CreateView):
         team.save()
         messages.success(self.request, 'Go ahead and add players to your team now!')
         return redirect('coaches:team_change', team.pk)
+
