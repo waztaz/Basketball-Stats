@@ -32,7 +32,7 @@ class CoachSignUpView(CreateView):
 #@method_decorator([login_required, teacher_required], name='dispatch')
 class TeamListView(ListView):
     model = Team
-    ordering = ('team_name', )
+    ordering = ('name', )
     #context_object_name = 'team'
     template_name = 'roster/coaches/team_list.html'
 
@@ -54,16 +54,14 @@ class PlayerListView(ListView):
         return queryset
 
 
-
-
 class TeamUpdateView(UpdateView):
     model=Team
-    fields = ('team_name', 'coach_id', )
+    fields = ('name', 'coach_id', )
     template_name = 'roster/coaches/team_change_form.html'
 
     def get_context_data(self, **kwargs):
         kwargs['players'] = self.get_object().players
-        #kwargs['team'] = self.get_object().team_name
+        #kwargs['team'] = self.get_object().name
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
@@ -79,11 +77,11 @@ class TeamUpdateView(UpdateView):
 class TeamCreateView(CreateView):
     model = Team
     fields = ('name', )
-    template_name = 'classroom/teachers/team_add_form.html'
+    template_name = 'roster/coaches/team_add_form.html'
 
     def form_valid(self, form):
         team = form.save(commit=False)
-        team.coach_id = self.request.user
+        team.coach_id = Coach.objects.get(user=self.request.user)
         team.save()
         messages.success(self.request, 'Go ahead and add players to your team now!')
         return redirect('coaches:team_change', team.pk)

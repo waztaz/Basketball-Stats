@@ -21,7 +21,7 @@ def get_default_user():
     return User.objects.get_or_create(username=DEFAULT_USER)[0].pk
 
 def get_default_team():
-    return Team.objects.get_or_create(team_name=DEFAULT_TEAM)[0]
+    return Team.objects.get_or_create(name=DEFAULT_TEAM)[0]
 
 def get_default_coach():
     return Coach.objects.get_or_create(user=get_default_user())[0]
@@ -38,10 +38,10 @@ class Coach(models.Model):
 class Team(models.Model):
     team_id=models.AutoField(primary_key=True)
     coach_id=models.ForeignKey(Coach, on_delete=models.CASCADE, related_name='teams')
-    team_name=models.CharField(max_length=100)
+    name=models.CharField(max_length=100)
 
     #def __str__(self):
-        #return self.team_name.text
+        #return self.name.text
 
 class PlayerPosition(Enum):
     PG="Point Guard"
