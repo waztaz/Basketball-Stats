@@ -8,7 +8,7 @@ from . import views
 urlpatterns = [
         #ex: /roster/
         path('', views.index, name='index'),
-        path('signup/', views.signup, name='signup'),
+        path('signup/', views.signup, name='sign'),
         path('coachhome', views.coachhome.as_view(template_name='coachhome.html'), name='coachhome'),
         path('coachhome/1',views.coachhome.as_view(template_name='coachhome.html')),
         path('coachhome/2',views.coachhome.as_view(template_name='coachhome.html')),

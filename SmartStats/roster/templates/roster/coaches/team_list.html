@@ -2,6 +2,9 @@
 
 {% block content %}
 
+<h1>Hi! {{ coach.first_name }}</h1>
+<h2 class="mb-3">My Teams</h2>
+<a href="{% url 'coaches:team_add' %}" class="btn btn-primary mb-3" role="button">Add team</a>
 {% if team_list %}
 <table class="table mb-0">
     <thead>
@@ -14,7 +17,7 @@
     {% for team in team_list %}
     	<tr>
             <td class="align-middle"><a href="{% url 'coaches:team_change' team.pk %}">{{ team.name }}</a></td>
-            <td class="align-middle">{{ team.players_count }}</td>
+            <td class="align-middle">{{ team.player_count }}</td>
         </tr>
     {% endfor %}
     </tbody>

@@ -36,10 +36,15 @@ class TeamListView(ListView):
     #context_object_name = 'team'
     template_name = 'roster/coaches/team_list.html'
 
+    def get_context_data(self, **kwargs):
+        kwargs['coach'] = Coach.objects.filter(user=self.request.user)[0]
+        return super().get_context_data(**kwargs)
+
     def get_queryset(self):
         current_coach = Coach.objects.get(user=self.request.user)
         print(current_coach)
-        queryset = Team.objects.filter(coach_id=current_coach)
+        queryset = Team.objects.filter(coach_id=current_coach) \
+                .annotate(player_count=Count('players', distinct=True))
         print(queryset)
         return queryset
 
@@ -122,3 +127,10 @@ def player_change(request, team_pk, player_pk):
         'player': player,
         'form': form,
     })
+
+def real_time_tracker(request, team_pk):
+    return render(request, 'roster/coaches/real_time_tracker.html')
+
+
+
+
