@@ -1,24 +1,27 @@
 Veijay Raj
-Commit 4 (Due 4/12)
+Commit Due 4/19
 
 This week, I completed the following:
 
-Reading: Creating url patterns
+Reading: Extending base_html
 
-Programming: Worked on branch 'urls_models_veijay' - to work on Django backend, add urls and clean up models before we integrate frontend and backend
+Programming: Worked on branch 'login_veijay' and 'master' - to work on Django backend and integrate Raghav's frontend files with html
 Tasks:
 -Merged branches with master
--debugged errors with models
+-debugged errors with models and added users
 -tested models in python shell to ensure items get added to database correctly
--added to roster/models.py --> add fields and str methods for readability
+-added to roster/models.py --> added users
 -added roster/urls.py --> add placeholders to add views
--added to roster/views.py
-
+-added to roster/views/* -> create actual views for each url pattern
+-added to SmartStats/urls.py -> create patterns for login
+-added to /templates -> create login templates and base templates
+-added to SmartStats/settings.py -> configure settings for login, add apps
 
 Files edited: All within SmartStats folder (Django home)
 roster/models.py
 roster/urls.py
-roster/views.py
+roster/views/*
 roster/template/roster --> all the html files to include bootstrap
-
+SmartStats/urls.py
+SmartStats/templates/*
 
