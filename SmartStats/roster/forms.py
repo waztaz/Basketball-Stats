@@ -56,3 +56,8 @@ class TeamForm(forms.ModelForm):
     class Meta:
         model = Team
         fields = ('name',)
+
+class PlayerForm(forms.ModelForm):
+    class Meta:
+        model = Player
+        fields = ('first_name', 'last_name', 'height', 'weight')

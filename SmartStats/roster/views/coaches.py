@@ -12,7 +12,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
 from ..models import User, Coach, Team, Player
-from ..forms import CoachSignUpForm
+from ..forms import CoachSignUpForm, PlayerForm
 
 class CoachSignUpView(CreateView):
     model = User
@@ -86,3 +86,39 @@ class TeamCreateView(CreateView):
         messages.success(self.request, 'Go ahead and add players to your team now!')
         return redirect('coaches:team_change', team.pk)
 
+
+def player_add(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+
+    if request.method == 'POST':
+        form=PlayerForm(request.POST)
+        if form.is_valid():
+            player = form.save(commit=False)
+            player.team = team
+            player.save()
+            messages.success(request, 'You successfully created a player')
+            return redirect('coaches:team_change', team.pk, player.pk)
+    else:
+        form = PlayerForm()
+
+    return render(request, 'roster/coaches/player_add_form.html', {'team': team, 'form': form})
+
+def player_change(request, team_pk, player_pk):
+    team = Team.objects.get(pk = team_pk)
+    player = get_object_or_404(Player, pk=player_pk, team=team)
+
+    if request.method == 'POST':
+        form = PlayerForm(request.POST, instance=player)
+        if form.is_valid():
+            with transaction.atomic():
+                form.save()
+            messages.success(request, 'Player saved with success!')
+            return redirect('coaches:team_change', team.pk)
+    else:
+        form = PlayerForm(instance=player)
+
+    return render(request, 'roster/coaches/player_change_form.html', {
+        'team': team,
+        'player': player,
+        'form': form,
+    })
