@@ -17,9 +17,65 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src = "{% static 'home/js/coach.js'%}"></script>
-  
 
+    <style type="text/css">
+    #court {
+  background-image: url("{% static 'home/images/court.jpg'%}");
+  background-size: cover;
+}
+  </style>
+
+
+
+<style type="text/css">{
+  border: 1px solid blue;
+  text-align: center;
+}
+
+#matrix {
+  border: 1px solid red;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#matrix tr, td {
+  padding: 50px;
+}
+
+#matrix button {
+  height: 150px;
+  width: 250px;
+  border: none;
+  font-family: helvetica;
+  font-weight: bold;
+}
+
+#b1, #b3 {
+  background-color: rgba(255, 153, 51, 0.5);
+}
+
+#b1:hover, #b3:hover {
+  background-color: rgb(255, 153, 51);
+}
+
+#b2 {
+  background-color: rgba(15, 138, 15, 0.5);
+}
+
+#b2:hover {
+  background-color: rgb(15, 138, 15);
+}
+
+
+#b4 {
+  background-color: rgba(189, 15, 15, 0.6);
+}
+
+#b4:hover {
+  background-color: rgb(189, 15, 15);
+}
+
+</style>
 
   <div class="jumbotron text-center" style="margin-bottom:0">
    <h1>Welcome to your Dashboard Coach .</h1>
@@ -58,7 +114,7 @@
 <div class =  "jumbotron" style="height:100vh">
   <div class="btn-group-vertical">
     {% for o in players %}
-    <button  type="button" class="btn btn-primary btn-lg" id = "players">{{o}}</button>
+    <button onclick="get_p()" type="button" class="btn btn-primary btn-lg" id = "{{o}}" data-toggle="button" aria-pressed="false" autocomplete="off" id = "players">{{o}}</button>
 {% endfor %}
 
 </div>
@@ -66,23 +122,46 @@
 </div>
 <div class = col-sm-10>
 <div class =  "jumbotron" style="height:25vh">
-  <button type="button" class="btn btn-primary">Two Points</button>
-<button onclick="add()" type="button" class="btn btn-secondary">Three Points</button>
-<button onclick="add()"type="button" class="btn btn-success">Foul</button>
-<button onclick="add()"type="button" class="btn btn-danger">Freethrow</button>
-<button type="button" class="btn btn-warning">Steal</button>
-<button type="button" class="btn btn-info">Block</button>
-<button type="button" class="btn btn-light">Assist</button>
-<button type="button" class="btn btn-dark">Rebound</button>
-<button  type="button" class="btn btn-dark" id="Sub">Substitution</button>
+  <button onclick="add(2,'btn btn-secondary')" type="button" class="btn btn-primary" id = "two">Two Points</button>
+<button onclick="add(3,'btn btn-secondary')" type="button" class="btn btn-secondary" id = "3">Three Points</button>
+<button onclick="add(4,'btn btn-secondary')" type="button" class="btn btn-success" id = "foul">Foul</button>
+<button onclick="add(5,'btn btn-secondary')" type="button" class="btn btn-danger" id = "ft">Freethrow</button>
+<button onclick = "add(6,'btn btn-secondary')" type="button" class="btn btn-warning" id = "stl">Steal</button>
+<button onclick = "add(7,'btn btn-secondary')"  type="button" class="btn btn-info" id  = "blk">Block</button>
+<button onclick = "add(8,'btn btn-secondary')"  type="button" class="btn btn-light" id = "ast">Assist</button>
+<button onclick = "add(9,'btn btn-secondary')" type="button" class="btn btn-dark" id = "rbd">Rebound</button>
+<button onclick = "substitute()" type="button" class="btn btn-dark" id="Sub">Substitution</button>
+<button onclick = "get_subs()" type="button" class="btn btn-dark" id="Sub">SubmitSubs</button>
 
 
 </div>
-<div class =  "jumbotron" style="height:70vh"></div>
+<div id = "court" class =  "jumbotron" style="height:70vh">
 
 
+<div>
+  <table id="matrix">
+    <tr>
+      <td>
+        <button id="b1">
+          <span>1</span>
+        </button></td>
+      <td><button id="b2">2</button></td>
+    </tr>
+  
+    <tr>
+      <td><button id="b3">3</button></td>
+      <td><button id="b4">4</button></td>
+    </tr>
+
+     <tr>
+      <td><button id="b3">3</button></td>
+      <td><button id="b4">4</button></td>
+    </tr>
+  </table>
 </div>
-</div>
+
+
 </div>
   </body>
+  <script type="text/javascript" src = "{% static 'home/js/coach.js'%}"></script>
 </html>
