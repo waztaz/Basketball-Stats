@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+        <h1>Welcome to your Team Roster Page</h1>
+      </div>
+      
+      <div class="container" style="margin-top:30px;height:100vh">
+      
+      <div class = row style="height:100vh">
+      <div class = col-sm-2>
+      
+      <div class =  "jumbotron" style="height:100vh">
+        <div class="btn-group-vertical" id = "players">
+            {% for player in players.all %}
+            <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">{{ player.first_name }}</button>
+        {% empty %}
+            <p>No players are available. Add one dummy.</p>
+        {% endfor %}
+        <button type="button" class="btn btn-primary btn-lg active" data-toggle="button">Player9</button>
+      </div>
+      </div>
+      </div>
+      <div class = col-sm-10>
+      <div class =  "jumbotron" style="height:75vh">
+       <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Enter Player</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Full Name">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Player Height</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Height">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Player Weight</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Weight">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Player Position</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Position">
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+      </div>
+      </div>
+      </div>
+
+{% endblock %}
