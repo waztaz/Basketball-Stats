@@ -11,6 +11,8 @@
       <link rel="stylesheet" href="{% static 'home/css/bootstrap.css' %}" type = "text/css"/>
 
     <title>SmartStats|Coach Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/court.css'%}">
+
   </head>
   <body style="height:100vh">
     
@@ -22,60 +24,17 @@
     #court {
   background-image: url("{% static 'home/images/court.jpg'%}");
   background-size: cover;
+  padding-left: 80px;
+  padding-bottom: 40px;
 }
   </style>
 
 
 
-<style type="text/css">{
-  border: 1px solid blue;
-  text-align: center;
-}
-
-#matrix {
-  border: 1px solid red;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-#matrix tr, td {
-  padding: 50px;
-}
-
-#matrix button {
-  height: 150px;
-  width: 250px;
-  border: none;
-  font-family: helvetica;
-  font-weight: bold;
-}
-
-#b1, #b3 {
-  background-color: rgba(255, 153, 51, 0.5);
-}
-
-#b1:hover, #b3:hover {
-  background-color: rgb(255, 153, 51);
-}
-
-#b2 {
-  background-color: rgba(15, 138, 15, 0.5);
-}
-
-#b2:hover {
-  background-color: rgb(15, 138, 15);
-}
 
 
-#b4 {
-  background-color: rgba(189, 15, 15, 0.6);
-}
 
-#b4:hover {
-  background-color: rgb(189, 15, 15);
-}
 
-</style>
 
   <div class="jumbotron text-center" style="margin-bottom:0">
    <h1>Welcome to your Dashboard Coach .</h1>
@@ -137,28 +96,20 @@
 </div>
 <div id = "court" class =  "jumbotron" style="height:70vh">
 
+<button style="width: 8%; height: 20%;" type="button"  id = "b1">Three Points</button>
+<button style="width: 25%; height: 27%;" type="button"  id = "b2">Three Points</button>
+<button style="width: 30%; height: 20%;" type="button"  id = "b3">Three Points</button>
+<button style="width: 22%; height: 27%;" type="button"  id = "b4">Three Points</button>
+<button style="width: 5%; height: 20%;" type="button"  id = "b5">Three Points</button>
+<button style="width: 22%; height: 27%;" type="button"  id = "b6">Three Points</button>
+<button style="width: 22%; height: 20%;" type="button"  id = "b7">Three Points</button>
+<button style="width: 22%; height: 20%;" type="button"  id = "b8">Three Points</button>
+<button style="width: 16%; height: 8%;" type="button"  id = "b9">Three Points</button>
+<button style="width: 16%; height: 8%;" type="button"  id = "b10">Three Points</button>
+<button style="width: 24%; height: 10%;" type="button"  id = "halfCircleBottom">Three Points</button>
+<button style="width: 12%; height: 13%;" type="button"  id = "b11">Three Points</button>
+<button style="width: 10%; height: 13%;" type="button"  id = "b12">Three Points</button>
 
-<div>
-  <table id="matrix">
-    <tr>
-      <td>
-        <button id="b1">
-          <span>1</span>
-        </button></td>
-      <td><button id="b2">2</button></td>
-    </tr>
-  
-    <tr>
-      <td><button id="b3">3</button></td>
-      <td><button id="b4">4</button></td>
-    </tr>
-
-     <tr>
-      <td><button id="b3">3</button></td>
-      <td><button id="b4">4</button></td>
-    </tr>
-  </table>
-</div>
 
 
 </div>
