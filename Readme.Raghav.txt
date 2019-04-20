@@ -1,3 +1,7 @@
+Week9: Had to deviate from the gantt chart for integration purposes this week. Instead I added to the realtime tracker page including adding
+functional buttons which result in calls to urls linked to django backend views. Added logic to coach.js which included making those calls
+and adding more logic for the page. Files are coachhome.html coach.js and court.css located on raghav_backend
+
 Week 8: Added UI framework for plays page which includes a basketball court and play list. Added the create team page as well which allows
 users to create a team and enter information such as team name,team size etc. All this implementation is done using bootstrap and html.
 Files are called creatteam.html,plays.html and are located in branch frontend_raghav under HomeStaticContent
