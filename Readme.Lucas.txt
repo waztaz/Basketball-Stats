@@ -1,3 +1,16 @@
+Week 9 commit:
+Work on branches player_login_logic
+Deviated from gantt chart this week to continue additional features and finish work. Coach login was completed during the week. Worked on finishing player login logic. This work was begun on a separate branch (player_login_logic) Began work on playbook feature discussed on design document. Playbook feature is not functional at the moment.
+
+Files edited
+- SmartStats/roster/views.py
+- SmartStats/roster/views/players.py
+- SmartStats/roster/models.py
+- SmartStats/roster/urls.py
+- SmartStats/roster/templates/roster/playbook.html
+- SmartStats/roster/templates/roster/playbookload.html
+- SmartStats/roster/templates/roster/gallery.html
+
 Week 8 commit:
 Work on branches page_logic_lucas, master
 - Merged page_logic_lucas to master
