@@ -1,0 +1,89 @@
+<html>
+
+<canvas id="canvas" width="1280" height="400" style="border:4px solid green"></canvas>
+
+{% for post in posts %}
+<div align="left">
+<p>pic no:{{post.id}}</p>
+<p>pic name:{{post.title}}</p><br>
+<input type=button id={{post.imagedata}} value="click to load" onclick="load(this.id)"><br>
+</div>
+
+<script type="text/javascript">
+function load(imagedata){
+var canvas = document.getElementById("canvas");
+var context=canvas.getContext('2d');
+l=JSON.parse(imagedata);
+for (i in l){
+if (l[i]["Type"]=='circle'){
+context.beginPath();
+context.arc(Math.abs(l[i]["X1"]+l[i]["X0"])/2,Math.abs(l[i]["Y1"]+l[i]["Y0"])/2,Math.sqrt(Math.pow(l[i]["X1"]-l[i]["X0"],2)+Math.pow(l[i]["Y1"]-l[i]["Y0"],2))/2, 0, Math.PI*2, true); 
+context.strokeStyle=l[i]['color']
+context.fillStyle=l[i]['color']
+context.lineWidth=l[i]['width']
+if(l[i]['fill']==1){
+context.fill()
+}
+context.stroke();
+context.closePath();
+}
+if (l[i]["Type"]=='rect'){
+startx=l[i]["X0"]
+starty=l[i]["Y0"]
+rectw=l[i]["W"];
+recth=l[i]["H"];
+context.strokeStyle=l[i]['color']
+context.fillStyle=l[i]['color']
+context.lineWidth=l[i]['width']
+context.strokeRect(startx,starty,rectw,recth);
+if (l[i]["fill"]==1){
+context.fillRect(startx,starty,rectw,recth);
+}
+}
+if(l[i]['Type']=='line'){
+context.beginPath()
+x0=l[i]['X0']
+y0=l[i]['Y0']
+x1=l[i]['X1']
+y1=l[i]['Y1']
+context.moveTo(x0,y0)
+context.lineTo(x1,y1)
+context.lineWidth=l[i]['width'];
+context.strokeStyle=l[i]['color'];
+context.stroke()
+context.closePath()
+}
+if(l[i]['Type']=='pencil'){
+   context.beginPath();
+   context.moveTo(l[i]["X0"],l[i]["Y0"]);
+   context.lineTo(l[i]["X1"],l[i]["Y1"]);
+   context.strokeStyle=l[i]['color'];
+   context.lineWidth=l[i]['width'];
+   context.stroke();
+   context.closePath();
+}
+if(l[i]['Type']=='spray'){
+mX=l[i]["X0"];
+mY=l[i]["Y0"];
+context.fillStyle=l[i]['color'];
+for (var i=0;i<20;i=i+6){
+context.fillRect(mX+i,mY+i,1,1);  
+context.fillRect(mX-i,mY-i,1,1);  
+context.fillRect(mX+i,mY-i,1,1);  
+context.fillRect(mX-i,mY+i,1,1);  
+context.fillRect(mX-i,mY,1,1);  
+context.fillRect(mX,mY-i,1,1);  
+context.fillRect(mX,mY+i,1,1);  
+context.fillRect(mX+i,mY,1,1);
+} 
+}
+if (l[i]['Type']=='eraser')
+      {
+      x=l[i]["X0"]
+      y=l[i]["Y0"]
+      context.clearRect(x-25, y-25, 10, 10);            
+      }
+}}
+</script>
+ {% endfor %}
+</html>

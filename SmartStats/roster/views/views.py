@@ -45,3 +45,32 @@ def player(request, team_id, player_id):
 
 def realtimetracker(request):
 	return render(request, 'roster/realtimetracker.html')
+
+#Adding temporary things for possible playbook feature
+
+def playbook(request):
+	return render_to_response('playbook.html')
+
+def galle(request):
+	return render_to_response('playbook.html')
+
+@csrf_exempt
+def save(request):
+	iname=request.POST.get('name')
+	idata=request.POST.get('data')
+	p=Pic(name=iname,data=idata)
+	p.save()
+	return render_to_response('playbook.html')
+
+def gall(request):
+	posts=[dict(id=i.id,title=i.name) for i in Pic.objects.order_by('id')]
+	return render(request, 'gallery.html', {'posts': posts})
+
+
+def load(request,imgname):
+        data=Pic.objects.filter(name=imgname)
+        print data[0].id
+	for i in Pic.objects.filter(name=imgname):
+		print i.id
+	posts=[dict(id=i.id,title=i.name,imagedata=i.data) for i in Pic.objects.filter(name=imgname)]
+return render(request,'playbookload.html',{'posts':posts})

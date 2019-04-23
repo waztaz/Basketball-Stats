@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+{% load static %}
+<canvas id="a" width="1280" height="400" style="border:4px solid green"></canvas>
+<script type="text/javascript" src="{{ STATIC_URL }} /static/min.js"></script>
+<script>
+f=0;
+b=document.getElementById("a");
+c=b.getContext("2d");
+b.style.background="white";
+jsondata=[]
+l=[];
+function iter(){if (l.length<10){l.push(one);}else{l.shift();l.push(one);}}
+function white(id){document.getElementById(id).style.background="white";}
+function reset(id){if(id==1){document.getElementById(id).style.background="lightblue";}else{document.getElementById(id).style.background="#d3d3d3";}}
+function clrscr(){var r=confirm("Are you sure?");if(r==true){b.width=b.width;}}
+function color(colour){c.beginPath();c.strokeStyle=colour;c.fillStyle=colour;c.closePath();}
+function events(){b.onmousedown=md;b.onmouseup=mu;b.onmousemove=mv;}
+function md(e){one=c.getImageData(0,0,b.width,b.height);iter();img=c.getImageData(0,0,b.width,b.height);sX=e.x;sY=e.y;pulse="on";}
+function mu(e1){eX=e1.x;eY=e1.y;pulse="off";
+if(item=='c'){jsondata.push({"Type":"line", "X0":sX,"Y0":sY,"X1":mX,"Y1":mY,"width":c.lineWidth,"color":c.strokeStyle})}
+if(item=='a'){jsondata.push({"Type":"rect", "X0":sX,"Y0":sY,"W":mX-sX,"H":mY-sY,"width":c.lineWidth,"color":c.strokeStyle,"fill":f})}
+if(item=='b'){jsondata.push({"Type":"circle", "X0":sX,"Y0":sY,"X1":mX,"Y1":mY,"width":c.lineWidth,"color":c.strokeStyle,"fill":f})}}
+function mv(e2){mX=e2.x;mY=e2.y;if (pulse=="on" && (item=='e' || item=='f')){draw();}else if (pulse=='on'){c.putImageData(img,0,0);draw();}}
+function rectangle(){events();item="a";}
+function circle(){events();item='b';}
+function line(){events();item='c';}
+function pencil(){events();item='d';}
+function erase(){item='e';events();}
+function spray(){item='f';events();}
+function undo(){if(l.length>=1){b.width=b.width;c.putImageData(l[l.length-1],0,0);l.pop();}}
+function draw(){if(item=='a'){c.strokeRect(sX,sY,mX-sX,mY-sY);c.stroke();if(f==1){c.fillRect(sX,sY,mX-sX,mY-sY);}}
+		if(item=="b"){c.beginPath();c.arc(Math.abs(mX+sX)/2,Math.abs(mY+sY)/2,Math.sqrt(Math.pow(mX-sX,2)+Math.pow(mY-sY,2))/2, 0, Math.PI*2);c.stroke();if(f==1){c.fill();}c.closePath();}
+		if(item=="c"){c.beginPath();c.moveTo(sX,sY);c.lineTo(mX,mY);c.stroke();c.closePath();} 
+		if(item=='d'){c.moveTo(sX,sY);c.lineTo(mX,mY);c.stroke();jsondata.push({"Type":"pencil", "X0":sX,"Y0":sY,"X1":mX,"Y1":mY,"width":c.lineWidth,"color":c.strokeStyle});sX=mX;sY=mY;}
+		if(item=='e'){c.clearRect(mX-25,mY-25,10,10);jsondata.push({"Type":"eraser", "X0":mX-25,"Y0":mY-25})}
+		if(item=='f'){for (var i=0;i<20;i=i+6){ jsondata.push({"Type":"spray", "X0":mX,"Y0":mY,"color":c.fillStyle}) 
+c.fillRect(mX+i,mY+i,1,1);  
+c.fillRect(mX-i,mY-i,1,1);  
+c.fillRect(mX+i,mY-i,1,1);  
+c.fillRect(mX-i,mY+i,1,1);  
+c.fillRect(mX-i,mY,1,1);  
+c.fillRect(mX,mY-i,1,1);  
+c.fillRect(mX,mY+i,1,1);  
+c.fillRect(mX+i,mY,1,1);  
+}  
+}}		
+function fill(){f=1;}
+function strok(){f=0;}
+function linewidth(){c.beginPath();var s=document.forms["f"]["pix"].value;c.lineWidth=s;c.closePath();}
+function save() {
+if (filename.value==""){
+alert("Enter filename:");
+}
+else{
+$.post("/save/",{'name':filename.value,'data':JSON.stringify(jsondata)},function(data,status){alert("saved")});
+}
+}
+</script>
+<center>
+<button id='6' style="background-color:#d3d3d3" onmouseover="white(id)" onmouseout="reset(id)" onclick="line()">Line</button>
+<button id='7' style="background-color:#d3d3d3" onmouseover="white(id)" onmouseout="reset(id)" onclick="pencil()">Pencil</button>
+<button id='2' style="background-color:#d3d3d3" onmouseover="white(id)" onmouseout="reset(id)" onclick="rectangle()">Rectangle</button>
+<button id='5' style="background-color:#d3d3d3" onmouseover="white(id)" onmouseout="reset(id)" onclick="circle()">Circle</button>
+
+
+<button id='9' style="background-color:#d3d3d3" onmouseover="white(id)" onmouseout="reset(id)" onclick="spray()">Spray</button>
+<button id='8' style="background-color:#d3d3d3" onmouseover="white(id)" onmouseout="reset(id)" onclick="erase()">Eraser</button>
+<form name="fo" action="">Fill or Stroke?
+<input type="radio" name="sex" onclick=fill() value="1">fill
+<input type="radio" name="sex" onclick=strok() value="0" checked="checked">border
+</form>
+<form name="f">Stroke Width(pixel)<input type="text" size="5" name="pix"></input><input type="button" onclick="linewidth()" value="ok"></button></form>
+<center>
+<table border=2 bgcolor=#FFFFFF align="center">
+<td><div onclick = "color('#0000ff')" style ="width:20px;height:20px;background-color:#0000ff"></div><td>
+<td><div onclick = "color('#009fff')" style ="width:20px;height:20px;background-color:#009fff"></div><td>
+<td><div onclick = "color('#0fffff')" style ="width:20px;height:20px;background-color:#0fffff"></div><td>
+<td><div onclick = "color('#bfffff')" style ="width:20px;height:20px;background-color:#bfffff"></div><td>
+<td><div onclick = "color('#000000')" style ="width:20px;height:20px;background-color:#000000"></div><td>
+<td><div onclick = "color('#333333')" style ="width:20px;height:20px;background-color:#333333"></div><td>
+<td><div onclick = "color('#666666')" style ="width:20px;height:20px;background-color:#666666"></div><td>
+<td><div onclick = "color('#999999')" style ="width:20px;height:20px;background-color:#999999"></div><td>
+<td><div onclick = "color('#ffcc66')" style ="width:20px;height:20px;background-color:#ffcc66"></div><td>
+<td><div onclick = "color('#ffcc00')" style ="width:20px;height:20px;background-color:#ffcc00"></div><td>
+<td><div onclick = "color('#ffff00')" style ="width:20px;height:20px;background-color:#ffff00"></div><td>
+<td><div onclick = "color('#ffff99')" style ="width:20px;height:20px;background-color:#ffff99"></div><td>
+<td><div onclick = "color('#003300')" style ="width:20px;height:20px;background-color:#003300"></div><td>
+<td><div onclick = "color('#555000')" style ="width:20px;height:20px;background-color:#555000"></div><td>
+<tr>
+<td><div onclick = "color('#00ff00')" style ="width:20px;height:20px;background-color:#00ff00"></div><td>
+<td><div onclick = "color('#99ff99')" style ="width:20px;height:20px;background-color:#99ff99"></div><td>
+<td><div onclick = "color('#f00000')" style ="width:20px;height:20px;background-color:#f00000"></div><td>
+<td><div onclick = "color('#ff6600')" style ="width:20px;height:20px;background-color:#ff6600"></div><td>
+<td><div onclick = "color('#ff9933')" style ="width:20px;height:20px;background-color:#ff9933"></div><td>
+<td><div onclick = "color('#F5DEB3')" style ="width:20px;height:20px;background-color:#F5DEB3"></div><td>
+<td><div onclick = "color('#330000')" style ="width:20px;height:20px;background-color:#330000"></div><td>
+<td><div onclick = "color('#663300')" style ="width:20px;height:20px;background-color:#663300"></div><td>
+<td><div onclick = "color('#cc6600')" style ="width:20px;height:20px;background-color:#cc6600"></div><td>
+<td><div onclick = "color('#DEB887')" style ="width:20px;height:20px;background-color:#DEB887"></div><td>
+<td><div onclick = "color('#aa0fff')" style ="width:20px;height:20px;background-color:#aa0fff"></div><td>
+<td><div onclick = "color('#cc66cc')" style ="width:20px;height:20px;background-color:#cc66cc"></div><td>
+<td><div onclick = "color('#ff66ff')" style ="width:20px;height:20px;background-color:#ff66ff"></div><td>
+<td><div onclick = "color('#ff99ff')" style ="width:20px;height:20px;background-color:#ff99ff"></div><td>
+
+</tr>
+</table></center>
+<tr>.</tr>
+<center><button id='1' style="background-color:lightblue" onmouseover="white(id)" onmouseout="reset(id)" onclick="clrscr()">Clear Screen</button>
+</center>
+Filename:<input id="filename" name="filename">
+<input type='button' value='save' onclick='save()'>
+<a href="gallery">Gallery</a>
+</html>

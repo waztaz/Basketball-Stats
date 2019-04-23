@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbo">
+    <h2> Gallery<h2>
+   
+
+{% for post in posts %}
+<form method="post" >
+<input type=button name="picname" value={{post.title}} onclick="load(this.value,this.id)"><br>
+<script type="text/javascript">
+function load(cvalue){
+document.location.href="/gallery/"+cvalue;
+}
+</script>
+ {% endfor %}
+</div>
+{% endblock %}

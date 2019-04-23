@@ -13,6 +13,11 @@ urlpatterns = [
             #path('team/<int:pk>', coaches.TeamUpdateView.as_view(), name='team_change'),
             
             ], 'roster'), namespace='coaches')),
+        #playbook temporary urls
+        url('^$', 'roster.views.playbook'),
+        url(r'^save/$', 'roster.views.save'),
+  		url(r'^gallery/$','roster.views.gall'),
+		url(r'^gallery/([^/]+)$',load),
 
 ]
        
