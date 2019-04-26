@@ -14,10 +14,10 @@ urlpatterns = [
             
             ], 'roster'), namespace='coaches')),
         #playbook temporary urls
-        url('^$', 'roster.views.playbook'),
-        url(r'^save/$', 'roster.views.save'),
-  		url(r'^gallery/$','roster.views.gall'),
-		url(r'^gallery/([^/]+)$',load),
+        #url('^$', 'roster.views.playbook'),
+        #url(r'^save/$', 'roster.views.save'),
+  		#url(r'^gallery/$','roster.views.gall'),
+		#url(r'^gallery/([^/]+)$',load),
 
 ]
        

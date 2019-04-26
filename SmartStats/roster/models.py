@@ -77,9 +77,9 @@ class Player(models.Model):
             choices=[(tag, tag.name) for tag in YearInSchool],
             )
 
-class Playbook(models.Model):
-	name=models.CharField(max_length=100)
-	data=models.CharField(max_length=10000000000)
+#class Playbook(models.Model):
+#	name=models.CharField(max_length=100)
+#	data=models.CharField(max_length=10000000000)
 
 
 """
