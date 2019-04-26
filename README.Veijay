@@ -25,3 +25,6 @@ roster/template/roster --> all the html files to include bootstrap
 SmartStats/urls.py
 SmartStats/templates/*
 
+error: on addplayer "return redirect(coaches"team_change" , 1, 1)"
+no reversematch
+
