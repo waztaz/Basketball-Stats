@@ -13,19 +13,22 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import UserRegisterFor
+from .forms import UserRegisterForm
 
 def index(request):
     return render(request, 'home/home.html')
 
-class coachhome(LoginRequiredMixin,generic.CreateView):
+class coachhome(generic.CreateView):
     def get(self,request):
-    	login_url = '/home/login/'
-    	redirect_field_name = '/home/login'
-    	players = ['Hello','Bye'] #This is where you put querries to database to select all players of the particular coach username of coahc can be provided by request.user
+    	players = ['Hello','Bye',"Test1","Test2","Test3","Test4"] #This is where you put querries to database to select all players of the particular coach username of coahc can be provided by request.user
     	template_name = 'home/coachhome.html'
     	print (request.user)
     	return render(request, self.template_name,{'players':players})
+
+
+    def post(self,request):
+        print (request.body.decode('utf-8'))
+        return HttpResponse(200)
 
 		
 
