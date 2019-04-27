@@ -1,4 +1,14 @@
+Week 10 commit:
+Work on branches player_login_logic
+Removed playbook features due to the fact that I did not complete them by the time this commit is due. Spent a considerable amount of time debugging issues with player login related to the model fields not saving. Began work on final report documents. 
+
+Files edited
+- SmartStats/roster/models.py
+- SmartStats/roster/players.py
+- SmartStats/roster/forms.py
+
 Week 9 commit:
+
 Work on branches player_login_logic
 Deviated from gantt chart this week to continue additional features and finish work. Coach login was completed during the week. Worked on finishing player login logic. This work was begun on a separate branch (player_login_logic) Began work on playbook feature discussed on design document. Playbook feature is not functional at the moment.
 
