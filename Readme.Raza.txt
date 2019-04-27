@@ -1,18 +1,22 @@
-Week 7:
+Week 9:
+
+Set up the django files on my computer. Had a lot of merge conflict issues and had to read the documentation to understand how to resolve it.
+
+Week 8:
 
 Completed the d3 analytics page and incorporated the real data into the analytics page and implemented some more functionality and options.
 
-Week 6:
+Week 7:
 
 Mostly spend my time reading the Django Documentation to figure out how to integrate the data with the webpages.
 
-Week 5:
+Week 6:
 Work on branches: Frontend_Raza
 
 
 Worked on D3 visualization of the court. Some of the visualization remain incomplete though.
 
-Week 4:
+Week 5:
 Work on branches: Frontend_Raza
 
 Worked on UI Logic for the login page and integrated it with the Django database. Tested out a few entries on the database and the website. Also integrated the rest of the pages so that all the pages have the same look. 
