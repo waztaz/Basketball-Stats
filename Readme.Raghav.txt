@@ -1,3 +1,8 @@
+Week10: Had to deviate from gantt chart as we are in the integration and testing stage of the project. Had to change my portion of the application
+to be able to integrate it with the backend models. Implemented more javascript to send json data via ajax request to django views where
+data can be unpacked and stored in the db using the appropriate models. Files are in home/static/js and home/templates/ called coach.js and 
+coachhome.html on raghav_backend branch
+
 Week9: Had to deviate from the gantt chart for integration purposes this week. Instead I added to the realtime tracker page including adding
 functional buttons which result in calls to urls linked to django backend views. Added logic to coach.js which included making those calls
 and adding more logic for the page. Files are coachhome.html coach.js and court.css located on raghav_backend
