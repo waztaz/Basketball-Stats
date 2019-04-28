@@ -25,8 +25,8 @@ class CoachSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
-        return redirect('coaches:team_list')
+        #login(self.request, user)
+        return redirect('/accounts/login')
 
 
 #@method_decorator([login_required, teacher_required], name='dispatch')

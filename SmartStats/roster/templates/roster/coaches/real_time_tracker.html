@@ -78,9 +78,16 @@
 </style>
 
   <div class="jumbotron text-center" style="margin-bottom:0">
-   <h1>Welcome to your Dashboard Coach .</h1>
-  <p><a href="{% url 'logout' %}">logout</a></p>
-</div>
+   <h1>Welcome to your Dashboard Coach</h1>
+  </div>
+  <div class="col-6 text-right">
+    {% if user.is_authenticated %}
+      <p class="pt-3">Logged in as <strong>{{ user.username }}</strong>. <a href="{% url 'logout' %}">Log out</a>.</p>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn btn-light" role="button">Log in</a>
+      <a href="{% url 'signup' %}" class="btn btn-primary" role="button">Sign up</a>
+    {% endif %}
+  </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
