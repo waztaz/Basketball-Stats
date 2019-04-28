@@ -1,8 +1,10 @@
 
 var url ='coachhome/'
 var toggle = true
-var select_sub = true;
+var select_sub = true
 var current_player = null
+var shot_value = null
+var shot_result = null
 function add(id,cls){
   console.log(toggle)
  
@@ -25,13 +27,48 @@ xhr.onreadystatechange = function () {
 
 xhr.open('POST',url+id, true);
 xhr.send(JSON.stringify(data));
+current_player = null;
 
 
 }
 }
 
 
+function get_make_or_miss(id){
+    shot_result = id
 
+}
+
+
+
+
+function get_shot_location(id){
+
+  if(current_player != null && shot_value != null && shot_result != null){
+    console.log(current_player)
+    
+    data = {'current_player':current_player,'shot_value':shot_value'court_location':id}
+    var xhr = new XMLHttpRequest();
+// we defined the xhr
+
+xhr.onreadystatechange = function () {
+    if (this.readyState != 4) return;
+
+    if (this.status == 200) {
+        console.log("successfull")    // we get the returned data
+    }
+
+   // end of state change: it can be after some time (async)
+};
+
+xhr.open('POST',url+id, true);
+xhr.send(JSON.stringify(data));
+current_player = null
+shot_value = null
+shot_result =  null
+}
+
+}
 
 
 function get_p(){

@@ -81,8 +81,8 @@
 </div>
 <div class = col-sm-10>
 <div class =  "jumbotron" style="height:25vh">
-  <button onclick="add(2,'btn btn-secondary')" type="button" class="btn btn-primary" id = "two">Two Points</button>
-<button onclick="add(3,'btn btn-secondary')" type="button" class="btn btn-secondary" id = "3">Three Points</button>
+  <button onclick="get_make_or_miss('make')" type="button" class="btn btn-primary" id = "two">Made FG</button>
+<button onclick="get_make_or_miss('miss')" type="button" class="btn btn-secondary" id = "3">Missed FG</button>
 <button onclick="add(4,'btn btn-secondary')" type="button" class="btn btn-success" id = "foul">Foul</button>
 <button onclick="add(5,'btn btn-secondary')" type="button" class="btn btn-danger" id = "ft">Freethrow</button>
 <button onclick = "add(6,'btn btn-secondary')" type="button" class="btn btn-warning" id = "stl">Steal</button>
@@ -96,19 +96,15 @@
 </div>
 <div id = "court" class =  "jumbotron" style="height:70vh">
 
-<button style="width: 8%; height: 20%;" type="button"  id = "b1">Three Points</button>
-<button style="width: 25%; height: 27%;" type="button"  id = "b2">Three Points</button>
-<button style="width: 30%; height: 20%;" type="button"  id = "b3">Three Points</button>
-<button style="width: 22%; height: 27%;" type="button"  id = "b4">Three Points</button>
-<button style="width: 5%; height: 20%;" type="button"  id = "b5">Three Points</button>
-<button style="width: 22%; height: 27%;" type="button"  id = "b6">Three Points</button>
-<button style="width: 22%; height: 20%;" type="button"  id = "b7">Three Points</button>
-<button style="width: 22%; height: 20%;" type="button"  id = "b8">Three Points</button>
-<button style="width: 16%; height: 8%;" type="button"  id = "b9">Three Points</button>
-<button style="width: 16%; height: 8%;" type="button"  id = "b10">Three Points</button>
-<button style="width: 24%; height: 10%;" type="button"  id = "halfCircleBottom">Three Points</button>
-<button style="width: 12%; height: 13%;" type="button"  id = "b11">Three Points</button>
-<button style="width: 10%; height: 13%;" type="button"  id = "b12">Three Points</button>
+<button onclick="get_shot_location('1')" style="width: 4%; height: 15%;" type="button"  id = "b1"></button>
+<button onclick="get_shot_location('2')" style="width: 7%; height: 18%;" type="button"  id = "b2"></button>
+<button onclick="get_shot_location('3')" style="width: 22%; height: 20%;" type="button"  id = "b3"></button>
+<button onclick="get_shot_location('4')" style="width: 22%; height: 20%;" type="button"  id = "b4"></button>
+<button onclick="get_shot_location('5')" style="width: 7%; height: 18%;" type="button"  id = "b5"></button>
+<button onclick="get_shot_location('6')" style="width: 4%; height: 15%;" type="button"  id = "b6"></button>
+<button onclick="get_shot_location('7')" style="width: 10%; height: 8%;" type="button"  id = "b7"></button>
+<button onclick="get_shot_location('8')" style="width: 10%; height: 8%;" type="button"  id = "b8"></button>
+<button onclick="get_shot_location('9')" style="width: 10%; height: 8%;" type="button"  id = "b9"></button>
 
 
 
