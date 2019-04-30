@@ -110,14 +110,9 @@ class Player(models.Model):
             choices=[(tag, tag.name) for tag in YearInSchool],
             )
     """
-#class Scout(models.Model):
-    #user = models.OneToOneField(User, on_delete=models.CASCADE)
-    #first_name = models.CharField(max_length=50)
-    #last_name = models.CharField(max_length=50)
-
 
     def __str__(self):
-        return self.first_name_text
+        return self.first_name
 
 
 class Scout(models.Model):

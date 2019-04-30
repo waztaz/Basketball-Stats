@@ -102,7 +102,7 @@ def player_add(request, pk):
             player.team = team
             player.save()
             messages.success(request, 'You successfully created a player')
-            return redirect('coaches:team_change', team.pk, player.pk)
+            return redirect('coaches:team_change', team.pk)
     else:
         form = PlayerForm()
 

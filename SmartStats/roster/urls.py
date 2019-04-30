@@ -14,5 +14,9 @@ urlpatterns = [
             path('team/<int:team_pk>/real_time_tracker', coaches.real_time_tracker, name='real_time_tracker')
             ], 'roster'), namespace='coaches')),
 
+        path('players/', include(([
+            #path('', players.PlayerStatsView.as_view(), name='player_stats'),
+            ], 'roster'), namespace='players')),
+
 ]
        
