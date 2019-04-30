@@ -23,5 +23,5 @@ class PlayerSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
-        return redirect('')
+        #login(self.request, user)
+        return redirect('/accounts/login')

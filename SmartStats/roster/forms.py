@@ -6,12 +6,17 @@ from django.forms.utils import ValidationError
 from roster.models import (Player, Coach, User, Team)
 
 class PlayerSignUpForm(UserCreationForm):
+    POINT_GUARD = 'PG'
+    SHOOTING_GUARD = 'SG'
+    SMALL_FORWARD = 'SF'
+    POWER_FORWARD = 'PF'
+    CENTER = 'C'
     POSITION_CHOICES = (
-            ('Point Guard', '1'),
-            ('Shooting Guard', '2'),
-            ('Small Forward', '3'),
-            ('Power Forward', '4'),
-            ('Center', '5'),
+        (POINT_GUARD, "Point Guard"),
+        (SHOOTING_GUARD, "Shooting Guard"),
+        (SMALL_FORWARD, "Small Forward"),
+        (POWER_FORWARD, "Power Forward"),
+        (CENTER, "Center"),
     )
 
 

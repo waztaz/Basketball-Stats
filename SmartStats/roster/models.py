@@ -50,6 +50,15 @@ class PlayerPosition(Enum):
     PF="Power Forward"
     C="Center"
 
+    #def __str__(self):
+        #return self.name.text
+
+#class PlayerPosition(Enum):
+#    PG="Point Guard"
+#    SG="Shooting Guard"
+#    SF="Small Forward"
+#    PF="Power Forward"
+#    C="Center"
 
 class YearInSchool(Enum):
     FR="Freshman"
@@ -58,6 +67,19 @@ class YearInSchool(Enum):
     SR="Senior"
 
 class Player(models.Model):
+    POINT_GUARD = 'PG'
+    SHOOTING_GUARD = 'SG'
+    SMALL_FORWARD = 'SF'
+    POWER_FORWARD = 'PF'
+    CENTER = 'C'
+    PLAYER_POSITION_CHOICES = (
+        (POINT_GUARD, "Point Guard"),
+        (SHOOTING_GUARD, "Shooting Guard"),
+        (SMALL_FORWARD, "Small Forward"),
+        (POWER_FORWARD, "Power Forward"),
+        (CENTER, "Center"),
+    )
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_user())
     player_id=models.AutoField(primary_key=True)
     team=models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name='players')
@@ -67,17 +89,18 @@ class Player(models.Model):
     height=models.IntegerField(default=0)
     #weight in lbs
     weight=models.IntegerField(default=0)
-    """
     position=models.CharField(
             max_length=2,
-            choices=[(tag, tag.name) for tag in PlayerPosition]
-            )
+            choices=PLAYER_POSITION_CHOICES,#[(tag, tag.name) for tag in PlayerPosition],
+            #null=True
+            default=CENTER,
+    )
+    """
     year_in_school=models.CharField(
             max_length=2,
             choices=[(tag, tag.name) for tag in YearInSchool],
             )
-"""
-"""
+    """
 #class Scout(models.Model):
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
     #first_name = models.CharField(max_length=50)
@@ -93,6 +116,7 @@ class Scout(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
 
+"""
 ########################## TO BE MOVED TO OWN APP LATER ###################
 class Game(models.Model):
     game_id= models.AutoField(primary_key = True)
