@@ -1,30 +1,16 @@
 Veijay Raj
-Commit Due 4/19
+Commit Due 4/26
 
 This week, I completed the following:
 
-Reading: Extending base_html
+Reading: Testing in django
 
-Programming: Worked on branch 'login_veijay' and 'master' - to work on Django backend and integrate Raghav's frontend files with html
-Tasks:
--Merged branches with master
--debugged errors with models and added users
--tested models in python shell to ensure items get added to database correctly
--added to roster/models.py --> added users
--added roster/urls.py --> add placeholders to add views
--added to roster/views/* -> create actual views for each url pattern
--added to SmartStats/urls.py -> create patterns for login
--added to /templates -> create login templates and base templates
--added to SmartStats/settings.py -> configure settings for login, add apps
+Programming: Debugged errors with login and cleaned up issues with urls and views
 
-Files edited: All within SmartStats folder (Django home)
-roster/models.py
+files worked on:
 roster/urls.py
 roster/views/*
-roster/template/roster --> all the html files to include bootstrap
-SmartStats/urls.py
-SmartStats/templates/*
 
-error: on addplayer "return redirect(coaches"team_change" , 1, 1)"
+error I need to fix: on addplayer "return redirect(coaches"team_change" , 1, 1)"
 no reversematch
 
