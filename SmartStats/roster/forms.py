@@ -24,7 +24,7 @@ class PlayerSignUpForm(UserCreationForm):
     last_name=forms.CharField(label='Last Name', max_length=50)
     height=forms.IntegerField(label='Height in inches')
     weight=forms.IntegerField(label='Weight in lbs')
-    #position=forms.ChoiceField(choices=POSITION_CHOICES)
+    position=forms.ChoiceField(choices=POSITION_CHOICES)
 
     class Meta(UserCreationForm.Meta):
         model = User

@@ -53,12 +53,21 @@ class PlayerPosition(Enum):
     #def __str__(self):
         #return self.name.text
 
-#class PlayerPosition(Enum):
-#    PG="Point Guard"
-#    SG="Shooting Guard"
-#    SF="Small Forward"
-#    PF="Power Forward"
-#    C="Center"
+class PlayerPosition(Enum):
+    PG="Point Guard"
+    SG="Shooting Guard"
+    SF="Small Forward"
+    PF="Power Forward"
+    C="Center"
+
+"""
+class PlayerPosition(Enum):
+    (PG, "Point Guard")
+    (SG, "Shooting Guard")
+    (SF, "Small Forward")
+    (PF, "Power Forward")
+    (C, "Center")
+"""
 
 class YearInSchool(Enum):
     FR="Freshman"
