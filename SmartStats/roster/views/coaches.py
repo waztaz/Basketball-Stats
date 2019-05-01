@@ -13,6 +13,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 
 from ..models import User, Coach, Team, Player
 from ..forms import CoachSignUpForm, PlayerForm
+from ..decorators import coach_required
 
 class CoachSignUpView(CreateView):
     model = User
@@ -29,7 +30,7 @@ class CoachSignUpView(CreateView):
         return redirect('/accounts/login')
 
 
-#@method_decorator([login_required, teacher_required], name='dispatch')
+@method_decorator([login_required, coach_required], name='dispatch')
 class TeamListView(ListView):
     model = Team
     ordering = ('name', )
@@ -48,6 +49,7 @@ class TeamListView(ListView):
         print(queryset)
         return queryset
 
+@method_decorator([login_required, coach_required], name='dispatch')
 class PlayerListView(ListView):
     model = Player
     ordering = ('first_name', 'last_name', )
@@ -58,7 +60,7 @@ class PlayerListView(ListView):
         print(queryset)
         return queryset
 
-
+@method_decorator([login_required, coach_required], name='dispatch')
 class TeamUpdateView(UpdateView):
     model=Team
     fields = ('name', 'coach_id', )
@@ -79,6 +81,7 @@ class TeamUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('coaches:team_change', kwargs={'pk': self.object.pk})
 
+@method_decorator([login_required, coach_required], name='dispatch')
 class TeamCreateView(CreateView):
     model = Team
     fields = ('name', )
@@ -91,7 +94,8 @@ class TeamCreateView(CreateView):
         messages.success(self.request, 'Go ahead and add players to your team now!')
         return redirect('coaches:team_change', team.pk)
 
-
+@login_required
+@coach_required
 def player_add(request, pk):
     team = get_object_or_404(Team, pk=pk)
 
@@ -102,7 +106,7 @@ def player_add(request, pk):
             player.team = team
             player.save()
             messages.success(request, 'You successfully created a player')
-            return redirect('coaches:team_change', team.pk, player.pk)
+            return redirect('coaches:team_change', team.pk)
     else:
         form = PlayerForm()
 

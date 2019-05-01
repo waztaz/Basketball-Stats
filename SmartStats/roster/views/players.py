@@ -25,3 +25,15 @@ class PlayerSignUpView(CreateView):
         user = form.save()
         #login(self.request, user)
         return redirect('/accounts/login')
+"""
+class PlayerStatsView(DetailView):
+    model = CumulativeStats
+    context_object_name = 'cumulative_stats'
+    template_name = 'roster/players/player_stats.html'
+
+    def get_context_data(self, **kwargs):
+        pass
+
+    def get_queryset(self):
+        return self.request.user.CumulativeStats.all()
+"""
