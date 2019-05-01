@@ -3,6 +3,7 @@ from enum import Enum
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 from django.utils.html import escape, mark_safe
+from datetime import date
 
 DEFAULT_USER = 'default_user'
 DEFAULT_TEAM = 'default_team'
@@ -115,16 +116,36 @@ class Player(models.Model):
         return self.first_name
 
 
+
 class Scout(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
 
+########################### ADDING STATS ##################################
+class Game(models.Model):
+    game_id= models.AutoField(primary_key = True)
+    date = models.DateField(default = date.today)
+    team = models.ForeignKey(Team, on_delete = models.CASCADE)
+    opponent = models.CharField(max_length = 100)
+    location = models.CharField(max_length = 100, null = True)
+    team_score = models.IntegerField(default = 0)
+    opponent_score = models.IntegerField(default = 0)
+
+
+class CumulativeStats(models.Model):
+    player = models.ForeignKey(Player, on_delete = models.CASCADE)
+    game = models.ForeignKey(Game, on_delete = models.CASCADE, null = True)
+    points = models.FloatField(default = 0)
+    rebounds = models.FloatField(default = 0)
+
+
+
 """
 ########################## TO BE MOVED TO OWN APP LATER ###################
 class Game(models.Model):
     game_id= models.AutoField(primary_key = True)
-    team_id = models.ForeignKey(Team, on_delete = models.CASCADE)
+    team = models.ForeignKey(Team, on_delete = models.CASCADE)
     opponent = models.CharField(max_length = 100)        #TODO: other team might not be using SmartStats?
     location = models.CharField(max_length = 100)
     team_score = models.IntegerField(default = 0)
