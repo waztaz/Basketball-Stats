@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-
+import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserRegisterForm
 
@@ -27,7 +27,15 @@ class coachhome(generic.CreateView):
 
 
     def post(self,request):
-        print (request.body.decode('utf-8'))
+
+        body = json.loads(request.body.decode('utf-8'))
+        print(body)
+        if body['selector'] == 'stat':
+            print ("hello1")
+        if body['selector'] == 'shot':
+            print (body)
+        if body['selector'] == 'subs':
+            print(body)
         return HttpResponse(200)
 
 		

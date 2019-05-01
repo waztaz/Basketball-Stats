@@ -11,6 +11,8 @@
       <link rel="stylesheet" href="{% static 'home/css/bootstrap.css' %}" type = "text/css"/>
 
     <title>SmartStats|Coach Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/court.css'%}">
+
   </head>
   <body style="height:100vh">
     
@@ -22,60 +24,17 @@
     #court {
   background-image: url("{% static 'home/images/court.jpg'%}");
   background-size: cover;
+  padding-left: 80px;
+  padding-bottom: 40px;
 }
   </style>
 
 
 
-<style type="text/css">{
-  border: 1px solid blue;
-  text-align: center;
-}
-
-#matrix {
-  border: 1px solid red;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-#matrix tr, td {
-  padding: 50px;
-}
-
-#matrix button {
-  height: 150px;
-  width: 250px;
-  border: none;
-  font-family: helvetica;
-  font-weight: bold;
-}
-
-#b1, #b3 {
-  background-color: rgba(255, 153, 51, 0.5);
-}
-
-#b1:hover, #b3:hover {
-  background-color: rgb(255, 153, 51);
-}
-
-#b2 {
-  background-color: rgba(15, 138, 15, 0.5);
-}
-
-#b2:hover {
-  background-color: rgb(15, 138, 15);
-}
 
 
-#b4 {
-  background-color: rgba(189, 15, 15, 0.6);
-}
 
-#b4:hover {
-  background-color: rgb(189, 15, 15);
-}
 
-</style>
 
   <div class="jumbotron text-center" style="margin-bottom:0">
    <h1>Welcome to your Dashboard Coach .</h1>
@@ -122,43 +81,31 @@
 </div>
 <div class = col-sm-10>
 <div class =  "jumbotron" style="height:25vh">
-  <button onclick="add(2,'btn btn-secondary')" type="button" class="btn btn-primary" id = "two">Two Points</button>
-<button onclick="add(3,'btn btn-secondary')" type="button" class="btn btn-secondary" id = "3">Three Points</button>
-<button onclick="add(4,'btn btn-secondary')" type="button" class="btn btn-success" id = "foul">Foul</button>
-<button onclick="add(5,'btn btn-secondary')" type="button" class="btn btn-danger" id = "ft">Freethrow</button>
-<button onclick = "add(6,'btn btn-secondary')" type="button" class="btn btn-warning" id = "stl">Steal</button>
-<button onclick = "add(7,'btn btn-secondary')"  type="button" class="btn btn-info" id  = "blk">Block</button>
-<button onclick = "add(8,'btn btn-secondary')"  type="button" class="btn btn-light" id = "ast">Assist</button>
-<button onclick = "add(9,'btn btn-secondary')" type="button" class="btn btn-dark" id = "rbd">Rebound</button>
+  
+  <button onclick="get_make_or_miss('miss')" type="button" class="btn btn-primary" id = "two">Made FG</button>
+<button onclick="get_make_or_miss('make')" type="button" class="btn btn-secondary" id = "3">Missed FG</button>
+<button onclick="add('foul','btn btn-secondary')" type="button" class="btn btn-success" id = "foul">Foul</button>
+<button onclick="add('ft','btn btn-secondary')" type="button" class="btn btn-danger" id = "ft">Freethrow</button>
+<button onclick = "add('stl','btn btn-secondary')" type="button" class="btn btn-warning" id = "stl">Steal</button>
+<button onclick = "add('blk','btn btn-secondary')"  type="button" class="btn btn-info" id  = "blk">Block</button>
+<button onclick = "add('ast','btn btn-secondary')"  type="button" class="btn btn-light" id = "ast">Assist</button>
+<button onclick = "add('rbd','btn btn-secondary')" type="button" class="btn btn-dark" id = "rbd">Rebound</button>
 <button onclick = "substitute()" type="button" class="btn btn-dark" id="Sub">Substitution</button>
 <button onclick = "get_subs()" type="button" class="btn btn-dark" id="Sub">SubmitSubs</button>
-
 
 </div>
 <div id = "court" class =  "jumbotron" style="height:70vh">
 
+<button onclick="get_shot_location('1',3)" style="width: 4%; height: 15%;" type="button"  id = "b1"></button>
+<button onclick="get_shot_location('2',3)" style="width: 7%; height: 18%;" type="button"  id = "b2"></button>
+<button onclick="get_shot_location('3',3)" style="width: 22%; height: 20%;" type="button"  id = "b3"></button>
+<button onclick="get_shot_location('4',3)" style="width: 22%; height: 20%;" type="button"  id = "b4"></button>
+<button onclick="get_shot_location('5',3)" style="width: 7%; height: 18%;" type="button"  id = "b5"></button>
+<button onclick="get_shot_location('6',3)" style="width: 4%; height: 15%;" type="button"  id = "b6"></button>
+<button onclick="get_shot_location('7',2)" style="width: 10%; height: 8%;" type="button"  id = "b7"></button>
+<button onclick="get_shot_location('8',2)" style="width: 10%; height: 8%;" type="button"  id = "b8"></button>
+<button onclick="get_shot_location('9',2)" style="width: 10%; height: 8%;" type="button"  id = "b9"></button>
 
-<div>
-  <table id="matrix">
-    <tr>
-      <td>
-        <button id="b1">
-          <span>1</span>
-        </button></td>
-      <td><button id="b2">2</button></td>
-    </tr>
-  
-    <tr>
-      <td><button id="b3">3</button></td>
-      <td><button id="b4">4</button></td>
-    </tr>
-
-     <tr>
-      <td><button id="b3">3</button></td>
-      <td><button id="b4">4</button></td>
-    </tr>
-  </table>
-</div>
 
 
 </div>
