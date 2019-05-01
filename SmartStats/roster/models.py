@@ -193,8 +193,8 @@ class LineupPlayer(models.Model):
 
 
 class LineupScore(models.Model):
-    lineup_id = models.ForeignKey(Lineup, on_delete = models.CASCADE)
-    game_id = models.ForeignKey(Game, on_delete = models.CASCADE)
+    lineup = models.ForeignKey(Lineup, on_delete = models.CASCADE)
+    game = models.ForeignKey(Game, on_delete = models.CASCADE)
     time_stamp_entered = models.DateTimeField()
     time_stamp_left = models.DateTimeField()
     team_score = models.IntegerField()
