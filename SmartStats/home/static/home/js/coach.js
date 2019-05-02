@@ -11,7 +11,7 @@ function add(id,cls){
     if(cls != 'btn btn-primary btn-lg' && current_player != null){
     console.log(current_player)
     
-    data = {'current_player':current_player,'id':id,'selector':'stat'}
+    data = {'current_player': current_player,'event':id,'selector':'stat'}
     var xhr = new XMLHttpRequest();
 // we defined the xhr
 
@@ -25,7 +25,7 @@ xhr.onreadystatechange = function () {
    // end of state change: it can be after some time (async)
 };
 
-xhr.open('POST','stat', true);
+xhr.open('POST','event', true);
 xhr.send(JSON.stringify(data));
 current_player = null;
 
@@ -48,7 +48,7 @@ function get_shot_location(id,shot_value){
   if(current_player != null && shot_result != null){
     console.log(current_player)
     
-    data = {'current_player':current_player,'shot_value':shot_value,'court_location':id,'selector':'shot','shot_result':shot_result}
+    data = {'current_player':current_player,'shot_value':shot_value,'court_location':id,'selector':'shot','event':shot_result}
     var xhr = new XMLHttpRequest();
 // we defined the xhr
 
@@ -62,7 +62,7 @@ xhr.onreadystatechange = function () {
    // end of state change: it can be after some time (async)
 };
 
-xhr.open('POST','shot', true);
+xhr.open('POST','event', true);
 xhr.send(JSON.stringify(data));
 current_player = null
 shot_value = null

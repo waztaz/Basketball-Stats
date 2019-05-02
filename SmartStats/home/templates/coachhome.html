@@ -73,7 +73,7 @@
 <!-- Write your comments here <div class =  "jumbotron" style="height:100vh">-->
   <div class="btn-group-vertical">
     {% for o in players %}
-    <button onclick="get_p()" type="button" class="btn btn-primary btn-lg" style="font-size: 1.0rem;padding:0.3rem" id = "{{o}}" data-toggle="button" aria-pressed="false" autocomplete="off" id = "players">{{o}}</button>
+    <button onclick="get_p()" type="button" class="btn btn-primary btn-lg" style="font-size: 1.0rem;padding:0.3rem" id = "{{o.player_id}}" data-toggle="button" aria-pressed="false" autocomplete="off">{{o}}</button>
 {% endfor %}
 
 </div>

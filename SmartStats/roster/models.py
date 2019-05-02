@@ -125,6 +125,39 @@ class CumulativeStats(models.Model):
     points = models.FloatField(default = 0)
     rebounds = models.FloatField(default = 0)
 
+class BasketballStat(models.Model):
+    missed_shot = 'miss'
+    made_shot = 'make'
+    free_throw = 'ft'
+    foul = 'foul'
+    steal = 'stl'
+    block = 'blk'
+    assist = 'ast'
+    rebound = 'rbd'
+
+    EVENT_CHOICES = (
+        (1, missed_shot),
+        (2, made_shot),
+        (3, free_throw),
+        (4, foul),
+        (5, steal),
+        (6, block),
+        (7, rebound)
+    )
+    
+    event_id = models.AutoField(primary_key = True)
+    player = models.ForeignKey(Player, on_delete = models.CASCADE)
+    #game_id = models.ForeignKey(Game, on_delete = models.CASCADE)
+    #time_stamp = models.DateTimeField(null=True)
+    event=models.CharField(
+            max_length=15,
+            choices=EVENT_CHOICES,
+            null=True,
+    )
+    shot_location = models.IntegerField(null=True)
+    shot_value = models.IntegerField(default = 0)
+
+
 
 
 """
