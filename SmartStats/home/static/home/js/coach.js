@@ -25,7 +25,7 @@ xhr.onreadystatechange = function () {
    // end of state change: it can be after some time (async)
 };
 
-xhr.open('POST',url+'stat', true);
+xhr.open('POST','stat', true);
 xhr.send(JSON.stringify(data));
 current_player = null;
 
@@ -62,7 +62,7 @@ xhr.onreadystatechange = function () {
    // end of state change: it can be after some time (async)
 };
 
-xhr.open('POST',url+'shot', true);
+xhr.open('POST','shot', true);
 xhr.send(JSON.stringify(data));
 current_player = null
 shot_value = null
@@ -112,7 +112,7 @@ xhr.onreadystatechange = function () {
 };
 
 var sub_send = {'selector':'subs','sub_list':subs}
-xhr.open('POST',url+'subs', true);
+xhr.open('POST','subs', true);
 xhr.send(JSON.stringify(sub_send));
 console.log(JSON.stringify(sub_send))
 var x = document.getElementsByClassName("btn btn-primary btn-lg btn-danger")

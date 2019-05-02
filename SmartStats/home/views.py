@@ -14,24 +14,46 @@ from django.shortcuts import render, redirect
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserRegisterForm
+import sys
+from django.db.models import Avg, Count
+sys.path.append("..")
+from roster.models import User, Coach, Team, Player
 
 def index(request):
     return render(request, 'home/home.html')
 
 class coachhome(generic.CreateView):
-    def get(self,request):
-    	players = ['Hello','Bye',"Test1","Test2","Test3","Test4"] #This is where you put querries to database to select all players of the particular coach username of coahc can be provided by request.user
-    	template_name = 'home/coachhome.html'
-    	print (request.user)
-    	return render(request, self.template_name,{'players':players})
+    player_stats = {}
+    lineups =[]
+
+    def get(self,request,pk):
+        current_coach = Coach.objects.get(user=self.request.user)
+        queryset = Player.objects.filter(team=pk)
+        players = []
+        for each in queryset:
+            players.append(each)
+            player_stats['player'] == each
+
+
+        if str(self.request.user) != "AnonymousUser":
+    	       #players = ['Hello','Bye',"Test1","Test2","Test3","Test4"] 
+    	       template_name = 'home/coachhome.html'
+    	       print ("hello" + str(self.request.user))
+    	       return render(request, self.template_name,{'players':players,'coach':self.request.user})
+        else:
+               return redirect('/accounts/login')
 
 
     def post(self,request):
 
+        
+
         body = json.loads(request.body.decode('utf-8'))
-        print(body)
+        
         if body['selector'] == 'stat':
-            print ("hello1")
+            print(body)
+            current_player
+            body['current_player']
         if body['selector'] == 'shot':
             print (body)
         if body['selector'] == 'subs':

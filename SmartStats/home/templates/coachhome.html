@@ -37,7 +37,7 @@
 
 
   <div class="jumbotron text-center" style="margin-bottom:0">
-   <h1>Welcome to your Dashboard Coach .</h1>
+   <h1>Welcome to your Dashboard Coach {{coach}}</h1>
   <p><a href="{% url 'logout' %}">logout</a></p>
 </div>
 
@@ -68,21 +68,20 @@
 <div class="container" style="margin-top:30px;height:100vh">
 
 <div class = row style="height:100vh">
-<div class = col-sm-2>
+<div class = col-sm-2 style="margin-left:0px">
 
-<div class =  "jumbotron" style="height:100vh">
+<!-- Write your comments here <div class =  "jumbotron" style="height:100vh">-->
   <div class="btn-group-vertical">
     {% for o in players %}
-    <button onclick="get_p()" type="button" class="btn btn-primary btn-lg" id = "{{o}}" data-toggle="button" aria-pressed="false" autocomplete="off" id = "players">{{o}}</button>
+    <button onclick="get_p()" type="button" class="btn btn-primary btn-lg" style="font-size: 1.0rem;padding:0.3rem" id = "{{o}}" data-toggle="button" aria-pressed="false" autocomplete="off" id = "players">{{o}}</button>
 {% endfor %}
 
-</div>
 </div>
 </div>
 <div class = col-sm-10>
 <div class =  "jumbotron" style="height:25vh">
   
-  <button onclick="get_make_or_miss('miss')" type="button" class="btn btn-primary" id = "two">Made FG</button>
+  <button onclick="get_make_or_miss('miss')" type="button" class="btn btn-primary"  id = "two">Made FG</button>
 <button onclick="get_make_or_miss('make')" type="button" class="btn btn-secondary" id = "3">Missed FG</button>
 <button onclick="add('foul','btn btn-secondary')" type="button" class="btn btn-success" id = "foul">Foul</button>
 <button onclick="add('ft','btn btn-secondary')" type="button" class="btn btn-danger" id = "ft">Freethrow</button>

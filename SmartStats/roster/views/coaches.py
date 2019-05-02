@@ -68,6 +68,7 @@ class TeamUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         kwargs['players'] = self.get_object().players
+        print("hello" + str(kwargs))
         #kwargs['team'] = self.get_object().name
         return super().get_context_data(**kwargs)
 
@@ -75,8 +76,9 @@ class TeamUpdateView(UpdateView):
         current_coach = Coach.objects.get(user=self.request.user)
         print(current_coach)
         queryset = Team.objects.filter(coach_id=current_coach)
-        print(queryset)
+        print("hello" + str(queryset))
         return queryset
+        
 
     def get_success_url(self):
         return reverse('coaches:team_change', kwargs={'pk': self.object.pk})

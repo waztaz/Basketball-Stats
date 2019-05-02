@@ -12,10 +12,10 @@ DEFAULT_TEAM = 'default_team'
 
 #Creating Custom User
 
+
 class User(AbstractUser):
     is_player=models.BooleanField(default=False)
     is_coach = models.BooleanField(default=False)
-
 
 
 def get_default_user():
@@ -61,14 +61,6 @@ class PlayerPosition(Enum):
     PF="Power Forward"
     C="Center"
 
-"""
-class PlayerPosition(Enum):
-    (PG, "Point Guard")
-    (SG, "Shooting Guard")
-    (SF, "Small Forward")
-    (PF, "Power Forward")
-    (C, "Center")
-"""
 
 class YearInSchool(Enum):
     FR="Freshman"
@@ -105,12 +97,6 @@ class Player(models.Model):
             #null=True
             default=CENTER,
     )
-    """
-    year_in_school=models.CharField(
-            max_length=2,
-            choices=[(tag, tag.name) for tag in YearInSchool],
-            )
-    """
 
     def __str__(self):
         return self.first_name
