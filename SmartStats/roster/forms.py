@@ -70,4 +70,4 @@ class PlayerForm(forms.ModelForm):
 class GameForm(forms.ModelForm):
     class Meta:
         model = Game
-        fields = ('date', 'team', 'opponent', 'location', 'team_score', 'opponent_score')
+        fields = ('date', 'opponent', 'location', 'team_score', 'opponent_score')

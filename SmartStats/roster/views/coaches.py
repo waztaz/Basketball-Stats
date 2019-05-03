@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.db.models import Avg, Count
+from django.db.models import Avg, Count, Sum
 from django.forms import inlineformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
@@ -68,8 +68,24 @@ class TeamUpdateView(UpdateView):
     template_name = 'roster/coaches/team_change_form.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['players'] = self.get_object().players
-        print("hello" + str(kwargs))
+        players = self.get_object().players
+        pk = self.kwargs['pk']
+        team = Team.objects.get(team_id = pk)
+        players2 = Player.objects.filter(team = team)
+        kwargs['players'] = players
+        player_stats = []
+        stats = BasketballStat.objects.values('player').annotate(sum_points = Sum('shot_value'))
+        for player in players2:
+            print(player.first_name)
+            stats = BasketballStat.objects.filter(player = player).values('player').annotate(sum_points = Sum('shot_value'))
+            if(len(stats) == 1):
+                stat = stats[0]
+                stat['player'] = player.first_name
+                player_stats.append(stats[0])
+
+        kwargs['stats'] = player_stats
+        print(player_stats)
+        #print("hello" + str(kwargs))
         #kwargs['team'] = self.get_object().name
         return super().get_context_data(**kwargs)
 
@@ -163,6 +179,7 @@ def game_add(request, pk):
 
     if request.method == 'POST':
         form=GameForm(request.POST)
+        #form.team.queryset = Team.objects.filter(team_id = pk)
         if form.is_valid():
             game = form.save(commit=False)
             game.team = team
