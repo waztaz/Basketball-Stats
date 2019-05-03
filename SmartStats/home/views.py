@@ -154,14 +154,14 @@ class analytics(generic.CreateView):
             else:    
                 hot.append(mode(l))
             #temp2.append(l.flatten())   
-            print (hot)
+            print ("hello" + str(hot))
             hotq = [quarter1[j],quarter2[j],quarter3[j],quarter4[j]]
             print (hotq)
             player_q.append(hotq.index(max(hotq))+1)
             j = j+1
             
         hot_map = {0:'not attempted shot', 1:'left corner three', 2:'left wing 3',4:'top left 3',5:'top right three', 6:' right corner three', 7:'right paint',8:'center paint',
-        9:'left paint'}
+        9:'left paint',10:'right mid range',11:'left mid range'}
         for each in hot:
             hot_send.append(hot_map[each])
 

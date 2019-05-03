@@ -57,14 +57,14 @@
 #b9{
   position: absolute;
   left: 410px;
-  top: 450px;
+  top: 350px;
  
 }
 
 #b10{
   position: absolute;
-  left: 650px;
-  top: 584px;
+  left: 600px;
+  top: 484px;
  
 }
 
@@ -78,8 +78,8 @@
 
 #b11{
   position: absolute;
-  left: 80px;
-  top: 590px;
+  left: 240px;
+  top: 484px;
  
 }
 
@@ -90,7 +90,7 @@
  
 }
 
- #b1, #b3,#b5,#b7,#b9 {
+ #b1, #b3,#b5,#b7,#b9,#b11 {
   background-color: rgba(255, 153, 51, 0.5);
 }
 
