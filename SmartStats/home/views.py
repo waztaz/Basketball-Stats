@@ -23,7 +23,7 @@ def index(request):
     return render(request, 'home/home.html')
 
 class coachhome(generic.CreateView):
-    player_stats = {}
+    player_stats = dict()
     lineups =[]
 
     def get(self,request,pk):
@@ -32,7 +32,8 @@ class coachhome(generic.CreateView):
         players = []
         for each in queryset:
             players.append(each)
-            player_stats['player'] == each
+            coachhome.player_stats.update({str(each) : [0,0,0,0,0,0]} )
+            print (coachhome.player_stats['kk'])
 
 
         if str(self.request.user) != "AnonymousUser":
