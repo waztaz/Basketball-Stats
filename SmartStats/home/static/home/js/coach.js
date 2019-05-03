@@ -5,6 +5,7 @@ var select_sub = true
 var current_player = null
 var shot_value = null
 var shot_result = null
+var quarter = 1
 function add(id,cls){
   console.log(toggle)
  
@@ -48,7 +49,7 @@ function get_shot_location(id,shot_value){
   if(current_player != null && shot_result != null){
     console.log(current_player)
     
-    data = {'current_player':current_player,'shot_value':shot_value,'court_location':id,'selector':'shot','event':shot_result}
+    data = {'current_player':current_player,'shot_value':shot_value,'court_location':id,'selector':'shot','event':shot_result,'quarter':quarter}
     var xhr = new XMLHttpRequest();
 // we defined the xhr
 
@@ -135,35 +136,14 @@ function substitute(){
     //buttons[j].className = "bt
 }//
 
-function timer(){
 
-  var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get todays date and time
-  var now = new Date().getTime();
-
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  // If the count down is finished, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
+function quarter(value){
+  quarter = value
+  console.log("helo" + value)
 
 }
-timer()
+
+function helo(value){
+    quarter = value
+
+}

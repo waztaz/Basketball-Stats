@@ -156,7 +156,10 @@ class BasketballStat(models.Model):
     )
     shot_location = models.IntegerField(null=True)
     shot_value = models.IntegerField(default = 0)
+    quarter = models.IntegerField(default = 1)
 
+    def __str__(self):
+        return str(self.shot_location)
 
 
 

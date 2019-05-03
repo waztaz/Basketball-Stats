@@ -18,6 +18,7 @@ import sys
 from django.db.models import Avg, Count
 sys.path.append("..")
 from roster.models import User, Coach, Team, Player, BasketballStat
+from statistics import mode
 
 def index(request):
     return render(request, 'home/home.html')
@@ -26,33 +27,38 @@ def statEvent(request):
     if request.method == 'POST':
         print("posting")
         body = json.loads(request.body.decode('utf-8'))
-        print(body)
         event = body['event']
         player_id = body['current_player']
-        print(player_id)
+        quarter = body['quarter']
+        print (quarter)
         player = Player.objects.get(player_id = player_id)
         print(event)
         if(event == 'make'):
             print("made basket")
             shot_value = body['shot_value']
+            print("hello shot valueeeee" + str(shot_value))
+
             shot_location = body['court_location']
             bs = BasketballStat(event = event, 
-                    player = int(player), 
+                    player = player ,
                     shot_value = int(shot_value),
-                    shot_location = int(shot_location)
+                    shot_location = int(shot_location),
+                    quarter = int(quarter)
                     )
         elif(event == 'miss'):
             print("missed basket")
             shot_value = 0
             shot_location = body['court_location']
-            print(shot_location)
+            print("TEST")
+            print(player)
             bs = BasketballStat(event = event,
-                    player = int(player),
+                    player = player,
                     shot_value = int(shot_value),
-                    shot_location = int(shot_location)
+                    shot_location = int(shot_location),
+                    quarter = int(quarter)
                     )
         else:
-            bs = BasketballStat(event = event, player = player)
+            bs = BasketballStat(event = event, player = player,quarter = int(quarter))
         print(bs.event)
         bs.save()
         return HttpResponse("Success")
@@ -70,12 +76,6 @@ class coachhome(generic.CreateView):
         players = []
         for each in queryset:
             players.append(each)
-
-            coachhome.player_stats.update({str(each) : [0,0,0,0,0,0]} )
-            print (coachhome.player_stats['kk'])
-
-
-            #player_stats['player'] == eac
 
         if str(self.request.user) != "AnonymousUser":
     	       #players = ['Hello','Bye',"Test1","Test2","Test3","Test4"] 
@@ -104,19 +104,78 @@ class coachhome(generic.CreateView):
 
 		
 
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('/home/coachhome')
-    else:
-        form = UserCreationForm()
-    return render(request, 'home/signup.html', {'form': form})
+class analytics(generic.CreateView):
+    def get(self,request,pk):
+        current_coach = Coach.objects.get(user=self.request.user)
+        queryset = Player.objects.filter(team_id=pk) 
+        players = []
+        ast = []
+        hot = {}
+        shots  = []
+        shots3 = []
+        quarter1 = []
+        quarter2 = []
+        quarter3 = []
+        quarter4 = []
+       
+        for each in queryset:
+            players.append(each)
+            threes = (len(BasketballStat.objects.filter(player = each,shot_value = '3')))
+            if threes == 0:
+               threes = 1 
+            ast.append(len(BasketballStat.objects.filter(player = each,event ='ast')))
+            shots.append((len(BasketballStat.objects.filter(player = each,shot_value = '2')))/threes)
+            quarter1.append(len(BasketballStat.objects.filter(player = each,quarter ='1')))
+            quarter2.append(len(BasketballStat.objects.filter(player = each,quarter ='2')))
+            quarter3.append(len(BasketballStat.objects.filter(player = each,quarter ='3')))
+            quarter4.append(len(BasketballStat.objects.filter(player = each,quarter ='4')))
+            print (BasketballStat.objects.filter(player = each,shot_value = '3'))
+           
+        
 
+        #i = 0
+        #for each in queryset:
+        #    hot.append
+        hot = []
+        hot_send = []
+        player_q = []
+        for each in players:
+            i = 0
+            j = 0
+            temp = []
+            temp2 = []
+            print("hello")
+            for thing in (BasketballStat.objects.filter(player = each)):
+                temp.append((BasketballStat.objects.filter(player = each)[i].shot_location))
+                i = i +1
+            l = [i for i in temp if i is not None] 
+            if len(l) == 0:
+                hot.append(0)
+            else:    
+                hot.append(mode(l))
+            #temp2.append(l.flatten())   
+            print (hot)
+            hotq = [quarter1[j],quarter2[j],quarter3[j],quarter4[j]]
+            print (hotq)
+            player_q.append(hotq.index(max(hotq))+1)
+            j = j+1
+            
+        hot_map = {0:'not attempted shot', 1:'left corner three', 2:'left wing 3',4:'top left 3',5:'top right three', 6:' right corner three', 7:'right paint',8:'center paint',
+        9:'left paint'}
+        for each in hot:
+            hot_send.append(hot_map[each])
+
+        print (shots)
+        print(player_q)
+
+        total = zip(players,ast,hot_send,shots,player_q)
+        return render(request, self.template_name,{'players':total,'coach':self.request.user,'ast':ast})
+
+        
+
+
+
+       
+        
 
 
