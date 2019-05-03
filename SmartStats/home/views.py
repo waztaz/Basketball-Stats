@@ -19,6 +19,7 @@ from django.db.models import Avg, Count
 sys.path.append("..")
 from roster.models import User, Coach, Team, Player, BasketballStat
 from statistics import mode
+from collections import Counter
 
 def index(request):
     return render(request, 'home/home.html')
@@ -148,11 +149,15 @@ class analytics(generic.CreateView):
             for thing in (BasketballStat.objects.filter(player = each)):
                 temp.append((BasketballStat.objects.filter(player = each)[i].shot_location))
                 i = i +1
-            l = [i for i in temp if i is not None] 
+            l = [i for i in temp if i is not None]
+
             if len(l) == 0:
                 hot.append(0)
-            else:    
-                hot.append(mode(l))
+            else:
+                c = Counter(l)
+                c = c.most_common(1)[0][0]
+                print("most common" + str(c))
+                hot.append(c)
             #temp2.append(l.flatten())   
             print ("hello" + str(hot))
             hotq = [quarter1[j],quarter2[j],quarter3[j],quarter4[j]]

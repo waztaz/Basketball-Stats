@@ -147,3 +147,20 @@ function helo(value){
     quarter = value
 
 }
+
+function del(){
+    data = {'event':'delete'}
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState != 4) return;
+  
+      if (this.status == 200) {
+          console.log("successfullsubs")    // we get the returned data
+      }
+  
+     // end of state change: it can be after some time (async)
+  };
+  xhr.open('POST','event', true);
+  xhr.send(JSON.stringify(data));
+
+}

@@ -198,7 +198,7 @@ def game_change(request, team_pk, game_pk):
     game = get_object_or_404(Game, pk=game_pk, team=team)
 
     if request.method == 'POST':
-        form = GameForm(request.POST, instance=player)
+        form = GameForm(request.POST, instance=game)
         if form.is_valid():
             with transaction.atomic():
                 form.save()
@@ -270,6 +270,14 @@ def statEvent(request, team_pk, game_pk):
         print("posting")
         body = json.loads(request.body.decode('utf-8'))
         event = body['event']
+
+        if(event == 'delete'):
+            game = Game.objects.get(game_id = game_pk)
+            bs = BasketballStat.objects.filter(game = game).order_by('-game_id')[0]
+            bs.delete()
+            return HttpResponse("Success")
+
+
         player_id = body['current_player']
         quarter = body.get('quarter', 1)
         print (quarter)

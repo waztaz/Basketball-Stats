@@ -38,6 +38,7 @@
 
   <div class="jumbotron text-center" style="margin-bottom:0">
    <h1>Welcome to your Dashboard Coach {{coach}}</h1>
+   <h1><a href="{% url 'home'  %}" class="btn btn-outline-secondary" role="button">Home</a></h2>
   <p><a href="{% url 'logout' %}">logout</a></p>
 </div>
 
@@ -95,7 +96,7 @@
 <button onclick = "helo('2')" type="button" class="btn btn-dark" id = "q2">Second Quarter</button>
 <button onclick = "helo('3')" type="button" class="btn btn-dark" id = "q3">Third Quarter</button>
 <button onclick = "helo('4')" type="button" class="btn btn-dark" id = "q4">Fourth Quarter</button>
-
+<button onclick = "del()" type="button" class="btn btn-dark" id = "q4">Undo</button>
 
 <p id="demo"></p>
 

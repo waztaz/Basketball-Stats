@@ -41,8 +41,8 @@ class Team(models.Model):
     coach_id=models.ForeignKey(Coach, on_delete=models.CASCADE, related_name='teams')
     name=models.CharField(max_length=100)
 
-    #def __str__(self):
-        #return self.name.text
+    def __str__(self):
+        return self.name
 
 class PlayerPosition(Enum):
     PG="Point Guard"
@@ -134,6 +134,7 @@ class BasketballStat(models.Model):
     block = 'blk'
     assist = 'ast'
     rebound = 'rbd'
+    turnover = 'to'
 
     EVENT_CHOICES = (
         (1, missed_shot),
@@ -142,7 +143,8 @@ class BasketballStat(models.Model):
         (4, foul),
         (5, steal),
         (6, block),
-        (7, rebound)
+        (7, rebound),
+        (8, turnover)
     )
     
     event_id = models.AutoField(primary_key = True)
