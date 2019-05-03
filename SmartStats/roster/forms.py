@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.forms.utils import ValidationError
 
-from roster.models import (Player, Coach, User, Team)
+from roster.models import (Player, Coach, User, Team, Game)
 
 class PlayerSignUpForm(UserCreationForm):
     POINT_GUARD = 'PG'
@@ -66,3 +66,8 @@ class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
         fields = ('first_name', 'last_name', 'height', 'weight')
+
+class GameForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = ('date', 'team', 'opponent', 'location', 'team_score', 'opponent_score')
