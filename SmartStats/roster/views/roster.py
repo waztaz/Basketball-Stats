@@ -11,6 +11,6 @@ def home(request):
         if request.user.is_coach:
             return redirect('coaches:team_list')
         else:
-            return redirect('player:profile')
+            return redirect('players:profile')
     return render(request, 'roster/home.html')
 

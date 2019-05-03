@@ -5,6 +5,7 @@ var select_sub = true
 var current_player = null
 var shot_value = null
 var shot_result = null
+var quarter = 1
 function add(id,cls){
   console.log(toggle)
  
@@ -48,7 +49,7 @@ function get_shot_location(id,shot_value){
   if(current_player != null && shot_result != null){
     console.log(current_player)
     
-    data = {'current_player':current_player,'shot_value':shot_value,'court_location':id,'selector':'shot','event':shot_result}
+    data = {'current_player':current_player,'shot_value':shot_value,'court_location':id,'selector':'shot','event':shot_result,'quarter':quarter}
     var xhr = new XMLHttpRequest();
 // we defined the xhr
 
@@ -135,9 +136,14 @@ function substitute(){
     //buttons[j].className = "bt
 }//
 
-function set_line_up(){
 
-
+function quarter(value){
+  quarter = value
+  console.log("helo" + value)
 
 }
 
+function helo(value){
+    quarter = value
+
+}
