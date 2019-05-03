@@ -147,7 +147,7 @@ class BasketballStat(models.Model):
     
     event_id = models.AutoField(primary_key = True)
     player = models.ForeignKey(Player, on_delete = models.CASCADE)
-    #game_id = models.ForeignKey(Game, on_delete = models.CASCADE)
+    game = models.ForeignKey(Game, on_delete = models.CASCADE, null = True)
     #time_stamp = models.DateTimeField(null=True)
     event=models.CharField(
             max_length=15,

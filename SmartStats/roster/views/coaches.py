@@ -10,10 +10,11 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
-
-from ..models import User, Coach, Team, Player, Game
+from django.http import HttpResponse
+from ..models import User, Coach, Team, Player, Game, BasketballStat
 from ..forms import CoachSignUpForm, PlayerForm, GameForm
 from ..decorators import coach_required
+import json
 
 class CoachSignUpView(CreateView):
     model = User
@@ -90,6 +91,7 @@ class GameListView(ListView):
     def get_context_data(self, **kwargs):
         print("hello" + str(kwargs))
         print(self.kwargs['pk'])
+        kwargs['team'] = self.kwargs['pk']
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
@@ -195,10 +197,102 @@ def game_change(request, team_pk, game_pk):
     })
 
 
+@login_required
+@coach_required
+def real_time_tracker(request, team_pk, game_pk):
+    team = Team.objects.get(pk = team_pk)
+    print(str(team.team_id))
+    game = get_object_or_404(Game, pk=game_pk, team=team)
+    print(game)
+    player_stats = dict()
+    lineups =[]
 
-def real_time_tracker(request, team_pk):
-    return render(request, 'roster/coaches/real_time_tracker.html')
+
+    return render(request, 'roster/coaches/real_time_tracker.html', {
+        'team': team,
+        'game': game,
+    })
+
+@method_decorator([login_required, coach_required], name='dispatch')
+class coachhome(CreateView):
+    template_name = 'roster/coaches/real_time_tracker.html'
+    player_stats = dict()
+    lineups =[]
+
+    def get(self,request,team_pk, game_pk):
+        current_coach = Coach.objects.get(user=self.request.user)
+        queryset = Player.objects.filter(team=team_pk)
+        players = []
+        for each in queryset:
+            players.append(each)
+
+        if str(self.request.user) != "AnonymousUser":
+    	       #players = ['Hello','Bye',"Test1","Test2","Test3","Test4"] 
+    	       template_name = 'home/coachhome.html'
+    	       print ("hello" + str(self.request.user))
+    	       return render(request, self.template_name,{'players':players,'coach':self.request.user})
+        else:
+               return redirect('/accounts/login')
 
 
+    def post(self,request):
+        body = json.loads(request.body.decode('utf-8'))
+
+        if body['selector'] == 'stat':
+            print(body)
+            current_player
+            body['current_player']
+        if body['selector'] == 'shot':
+            print (body)
+        if body['selector'] == 'subs':
+            print(body)
+        return HttpResponse(200)
+
+def statEvent(request, team_pk, game_pk):
+    if request.method == 'POST':
+        print("posting")
+        body = json.loads(request.body.decode('utf-8'))
+        event = body['event']
+        player_id = body['current_player']
+        quarter = body.get('quarter', 1)
+        print (quarter)
+        player = Player.objects.get(player_id = player_id)
+
+        game = Game.objects.get(game_id = game_pk)
+
+        print(event)
+        if(event == 'make'):
+            print("made basket")
+            shot_value = body['shot_value']
+            print("hello shot valueeeee" + str(shot_value))
+
+            shot_location = body['court_location']
+            bs = BasketballStat(event = event, 
+                    player = player,
+                    game = game,
+                    shot_value = int(shot_value),
+                    shot_location = int(shot_location),
+                    quarter = int(quarter)
+                    )
+        elif(event == 'miss'):
+            print("missed basket")
+            shot_value = 0
+            shot_location = body['court_location']
+            print("TEST")
+            print(player)
+            bs = BasketballStat(event = event,
+                    player = player,
+                    shot_value = int(shot_value),
+                    shot_location = int(shot_location),
+                    quarter = int(quarter)
+                    )
+        else:
+            bs = BasketballStat(event = event, player = player,quarter = int(quarter))
+        print(bs.event)
+        bs.save()
+        return HttpResponse("Success")
+        
+
+    return HttpResponse("Not a POST")
 
 

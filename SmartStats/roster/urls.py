@@ -14,7 +14,8 @@ urlpatterns = [
             path('team/<int:pk>/schedule/', coaches.GameListView.as_view(), name='schedule'),
             path('team/<int:pk>/player/add', coaches.player_add, name='player_add'),
             path('team/<int:team_pk>/player/<int:player_pk>/', coaches.player_change, name='player_change'),
-            path('team/<int:team_pk>/game/<int:game_pk>/real_time_tracker', coaches.real_time_tracker, name='real_time_tracker')
+            path('team/<int:team_pk>/game/<int:game_pk>/tracker', coaches.coachhome.as_view(), name='tracker'),
+            path('team/<int:team_pk>/game/<int:game_pk>/event', coaches.statEvent, name='stat_event'),
             ], 'roster'), namespace='coaches')),
 
         path('players/', include(([

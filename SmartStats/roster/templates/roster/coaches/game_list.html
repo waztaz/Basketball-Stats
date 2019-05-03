@@ -11,6 +11,8 @@
       <tr>
         <th>Game</th>
         <th>Date</th>
+        <th>Edit Game</th>
+        <th>Go to Tracker</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +20,8 @@
     	<tr>
             <td class="align-middle">{{ game.opponent }}</td>
             <td class="align-middle">{{ game.date }}</td>
+            <td class="align-middle"><a href="{% url 'coaches:game_change' game.team.pk game.pk %}">Edit Game</a></td>
+            <td class="align-middle"><a href="{% url 'coaches:tracker' game.team.pk game.pk %}">Tracker</a></td>
         </tr>
     {% endfor %}
     </tbody>
