@@ -3,14 +3,14 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView, DetailView
 
 from ..forms import PlayerSignUpForm
-from ..models import User, Coach, Team, Player, CumulativeStats
+from ..models import User, Coach, Team, Player, CumulativeStats, BasketballStat
 from ..forms import CoachSignUpForm, PlayerForm
 
 class PlayerSignUpView(CreateView):
@@ -27,13 +27,28 @@ class PlayerSignUpView(CreateView):
         #login(self.request, user)
         return redirect('/accounts/login')
 
-class PlayerStatsView(DetailView):
-    model = CumulativeStats
-    context_object_name = 'cumulative_stats'
-    template_name = 'roster/players/player_stats.html'
+class PlayerStatsView(ListView):
+    model = Player
+    template_name = 'roster/players/player_home.html'
 
     def get_context_data(self, **kwargs):
-        pass
+        current_player = Player.objects.get(user = self.request.user)
+        kwargs['player'] = current_player
+        total_points = BasketballStat.objects.filter(player = current_player).aggregate(Sum('shot_value')).get('shot_value__sum', 0)
+        kwargs['total_points'] = total_points
+        total_rebounds = BasketballStat.objects.filter(player = current_player, event='rbd').count()
+        kwargs['total_rebounds'] = total_rebounds
+        total_assists = BasketballStat.objects.filter(player=current_player, event='ast').count()
+        kwargs['total_assists'] = total_assists
+        print(kwargs)
+        return super().get_context_data(**kwargs)
 
     def get_queryset(self):
-        return self.request.user.CumulativeStats.all()
+        current_player = Player.objects.get(user = self.request.user)
+        total_points = BasketballStat.objects.filter(player = current_player).aggregate(Sum('shot_value'))
+        print(total_points)
+        total_rebounds = BasketballStat.objects.filter(player = current_player, event='rbd').count()
+        print(total_rebounds)
+        total_assists = BasketballStat.objects.filter(player=current_player, event='ast').count()
+        print(total_assists)
+        return current_player

@@ -18,7 +18,7 @@ urlpatterns = [
             ], 'roster'), namespace='coaches')),
 
         path('players/', include(([
-           # path('', players.PlayerStatsView.as_view(), name='player_stats'),
+            path('', players.PlayerStatsView.as_view(), name='player_home'),
             ], 'roster'), namespace='players')),
 
 ]
