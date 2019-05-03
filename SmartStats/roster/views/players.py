@@ -7,10 +7,11 @@ from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView
 
 from ..forms import PlayerSignUpForm
-from ..models import User
+from ..models import User, Coach, Team, Player, CumulativeStats
+from ..forms import CoachSignUpForm, PlayerForm
 
 class PlayerSignUpView(CreateView):
     model = User
@@ -25,7 +26,7 @@ class PlayerSignUpView(CreateView):
         user = form.save()
         #login(self.request, user)
         return redirect('/accounts/login')
-"""
+
 class PlayerStatsView(DetailView):
     model = CumulativeStats
     context_object_name = 'cumulative_stats'
@@ -36,4 +37,3 @@ class PlayerStatsView(DetailView):
 
     def get_queryset(self):
         return self.request.user.CumulativeStats.all()
-"""
