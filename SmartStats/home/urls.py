@@ -15,9 +15,8 @@ urlpatterns = [
         path('coachhome/3',views.coachhome.as_view(template_name='coachhome.html')), # ne
         path('coachhome/subs',views.coachhome.as_view(template_name='coachhome.html')),
         path('coachhome/shot',views.coachhome.as_view(template_name = 'coachhome.html')), 
-        path('coachhome/stat',views.coachhome.as_view(template_name='coachhome.html'))# new
- # new
- # new
+        path('coachhome/stat',views.coachhome.as_view(template_name='coachhome.html')),
+        path('coachhome/event', views.statEvent, name='statEvent'), #send stat to db
 
 
 ]

@@ -17,10 +17,48 @@ from .forms import UserRegisterForm
 import sys
 from django.db.models import Avg, Count
 sys.path.append("..")
-from roster.models import User, Coach, Team, Player
+from roster.models import User, Coach, Team, Player, BasketballStat
 
 def index(request):
     return render(request, 'home/home.html')
+
+def statEvent(request):
+    if request.method == 'POST':
+        print("posting")
+        body = json.loads(request.body.decode('utf-8'))
+        print(body)
+        event = body['event']
+        player_id = body['current_player']
+        print(player_id)
+        player = Player.objects.get(player_id = player_id)
+        print(event)
+        if(event == 'make'):
+            print("made basket")
+            shot_value = body['shot_value']
+            shot_location = body['court_location']
+            bs = BasketballStat(event = event, 
+                    player = int(player), 
+                    shot_value = int(shot_value),
+                    shot_location = int(shot_location)
+                    )
+        elif(event == 'miss'):
+            print("missed basket")
+            shot_value = 0
+            shot_location = body['court_location']
+            print(shot_location)
+            bs = BasketballStat(event = event,
+                    player = int(player),
+                    shot_value = int(shot_value),
+                    shot_location = int(shot_location)
+                    )
+        else:
+            bs = BasketballStat(event = event, player = player)
+        print(bs.event)
+        bs.save()
+        return HttpResponse("Success")
+        
+
+    return HttpResponse("Not a POST")
 
 class coachhome(generic.CreateView):
     player_stats = dict()
@@ -32,9 +70,12 @@ class coachhome(generic.CreateView):
         players = []
         for each in queryset:
             players.append(each)
+
             coachhome.player_stats.update({str(each) : [0,0,0,0,0,0]} )
             print (coachhome.player_stats['kk'])
 
+
+            #player_stats['player'] == eac
 
         if str(self.request.user) != "AnonymousUser":
     	       #players = ['Hello','Bye',"Test1","Test2","Test3","Test4"] 
