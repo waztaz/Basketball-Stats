@@ -162,7 +162,6 @@ class BasketballStat(models.Model):
         return str(self.shot_location)
 
 
-
 """
 ########################## TO BE MOVED TO OWN APP LATER ###################
 class Game(models.Model):

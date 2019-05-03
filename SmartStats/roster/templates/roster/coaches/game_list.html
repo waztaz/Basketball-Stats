@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Hi! {{ coach.first_name }}</h1>
+<h2 class="mb-3">My Games</h2>
+<a href="{% url 'coaches:game_add' view.kwargs.pk %}" class="btn btn-primary mb-3" role="button">Add Game</a>
+{% if game_list %}
+<table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Game</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for game in game_list %}
+    	<tr>
+            <td class="align-middle">{{ game.opponent }}</td>
+            <td class="align-middle">{{ game.date }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+{% else %}
+    <p>No games are available.</p>
+{% endif %}
+
+{% endblock %}

@@ -11,8 +11,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from ..models import User, Coach, Team, Player
-from ..forms import CoachSignUpForm, PlayerForm
+from ..models import User, Coach, Team, Player, Game
+from ..forms import CoachSignUpForm, PlayerForm, GameForm
 from ..decorators import coach_required
 
 class CoachSignUpView(CreateView):
@@ -78,10 +78,28 @@ class TeamUpdateView(UpdateView):
         queryset = Team.objects.filter(coach_id=current_coach)
         print("hello" + str(queryset))
         return queryset
-        
 
     def get_success_url(self):
         return reverse('coaches:team_change', kwargs={'pk': self.object.pk})
+
+@method_decorator([login_required, coach_required], name='dispatch')
+class GameListView(ListView):
+    model=Game
+    template_name = 'roster/coaches/game_list.html'
+
+    def get_context_data(self, **kwargs):
+        print("hello" + str(kwargs))
+        print(self.kwargs['pk'])
+        return super().get_context_data(**kwargs)
+
+    def get_queryset(self):
+        current_coach = Coach.objects.get(user=self.request.user)
+        print(current_coach)
+        team_id = self.kwargs['pk']
+        team = Team.objects.get(team_id = team_id)
+        queryset = Game.objects.filter(team=team)
+        print(queryset)
+        return queryset
 
 @method_decorator([login_required, coach_required], name='dispatch')
 class TeamCreateView(CreateView):
@@ -114,6 +132,8 @@ def player_add(request, pk):
 
     return render(request, 'roster/coaches/player_add_form.html', {'team': team, 'form': form})
 
+@login_required
+@coach_required
 def player_change(request, team_pk, player_pk):
     team = Team.objects.get(pk = team_pk)
     player = get_object_or_404(Player, pk=player_pk, team=team)
@@ -133,6 +153,48 @@ def player_change(request, team_pk, player_pk):
         'player': player,
         'form': form,
     })
+
+@login_required
+@coach_required
+def game_add(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+
+    if request.method == 'POST':
+        form=GameForm(request.POST)
+        if form.is_valid():
+            game = form.save(commit=False)
+            game.team = team
+            game.save()
+            messages.success(request, 'You successfully created a game')
+            return redirect('coaches:schedule', team.pk)
+    else:
+        form = GameForm()
+
+    return render(request, 'roster/coaches/game_add_form.html', {'team': team, 'form': form})
+
+@login_required
+@coach_required
+def game_change(request, team_pk, game_pk):
+    team = Team.objects.get(pk = team_pk)
+    game = get_object_or_404(Game, pk=game_pk, team=team)
+
+    if request.method == 'POST':
+        form = GameForm(request.POST, instance=player)
+        if form.is_valid():
+            with transaction.atomic():
+                form.save()
+            messages.success(request, 'Game saved with success!')
+            return redirect('coaches:schedule', team.pk)
+    else:
+        form = GameForm(instance=game)
+
+    return render(request, 'roster/coaches/game_change_form.html', {
+        'team': team,
+        'game': game,
+        'form': form,
+    })
+
+
 
 def real_time_tracker(request, team_pk):
     return render(request, 'roster/coaches/real_time_tracker.html')
