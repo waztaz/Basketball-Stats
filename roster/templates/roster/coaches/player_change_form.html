@@ -1,0 +1,22 @@
+  
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags crispy_forms_filters %}
+
+{% block content %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'coaches:team_list' %}">My Teams</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'coaches:team_change' team.pk %}">{{ team.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ player.first_name }}</li>
+    </ol>
+  </nav>
+  <h2 class="mb-3">{{ player.first_name }}</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success">Save changes</button>
+    <a href="{% url 'coaches:team_change' team.pk %}" class="btn btn-outline-secondary" role="button">Nevermind</a>
+  </form>
+{% endblock %}

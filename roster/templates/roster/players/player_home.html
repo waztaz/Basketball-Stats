@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Hi! {{ player.first_name }}</h1>
+<h2 class="mb-3">My Profile</h2>
+<table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Points</th>
+        <th>Rebounds</th>
+        <th>Assists</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="align-middle">{{ total_points }}</td>
+            <td class="align-middle">{{ total_rebounds }}</td>
+            <td class="align-middle">{{ total_assists }}</td>
+        </tr>
+    </tbody>
+
+{% endblock %}
+
