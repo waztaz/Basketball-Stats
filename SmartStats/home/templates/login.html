@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	 {% load staticfiles %}
+	<title>My Login Page</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/my-login.css">
+	<link rel="stylesheet" href="{% static 'home/css/bootstrap.css' %}" type = "text/css"/>
+</head>
+
+<body class="my-login-page">
+	<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="home/js/bootstrap.min.js"></script>
+	<script src="js/my-login.js"></script>
+</body>
+</html>
+
+
+<!--
+                           <div class="col-md-12 mb-3">
+                              <p class="text-center">
+                                 <a href="#" class="google btn mybtn"><i class="fa fa-google-plus">
+                                 </i> Signup using Google
+                                 </a>
+                              </p>
+                           </div>
+                       -->

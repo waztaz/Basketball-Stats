@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron text-center" style="margin-bottom:0">
+        <h1>Welcome to your Team Roster Page</h1>
+        <h1>{{ team.name }}</h1>
+        <h2><a href="{% url 'coaches:schedule' team.pk %}" class="btn btn-primary mb-3" role="button">Schedule</a></h2>
+        <h2><a href="{% url 'home:analytics' team.pk %}" class="btn btn-primary mb-3" role="button">Analytics</a></h2>
+      </div>
+      
+      <div class="container" style="margin-top:30px;height:100vh">
+      
+      <div class = row style="height:100vh">
+      <div class = col-sm-2>
+      
+      <div class =  "jumbotron" style="height:100vh">
+        <div class="btn-group-vertical" id = "players">
+            <div class="card-footer">
+                <a href="{% url 'coaches:player_add' team.pk %}" class="btn btn-primary btn-sm">Add player</a>
+            </div>
+          {% for player in players.all %}
+          <a href="{% url 'coaches:player_change' team.pk player.pk %}" class="btn btn-primary btn-lg active" role="button">{{ player.first_name }}</a>
+          {% empty %}
+            <p>No players are available. Add one dummy.</p>
+          {% endfor %}
+      </div>
+      </div>
+      </div>
+      <div class = col-sm-10>
+      <div class =  "jumbotron" style="height:75vh">
+        <table class="table mb-0">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for stat in stats %}
+            <tr>
+                  <td class="align-middle">{{ stat.player }}</td>
+                  <td class="align-middle">{{ stat.sum_points }}</td>
+              </tr>
+          {% endfor %}
+          </tbody>
+      </form>
+      </div>
+      </div>
+      </div>
+      </div>
+
+{% endblock %}
