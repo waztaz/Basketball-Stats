@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/waztaz/Desktop/new new new desktop/basketballstats/eecs395_sp19_basketballstats/SmartStats/mypython/bin/python3" "$0" "$@"
+'''exec' "/Users/waztaz/Desktop/BasketballStats/Basketball Stats/SmartStats/mypython/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/waztaz/Desktop/new new new desktop/basketballstats/eecs395_sp19_basketballstats/SmartStats/mypython"
+VIRTUAL_ENV="/Users/waztaz/Desktop/BasketballStats/Basketball Stats/SmartStats/mypython"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
